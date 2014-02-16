@@ -29,78 +29,49 @@ if android:
     android.init()
     android.map_key(android.KEYCODE_BACK, pygame.K_ESCAPE)
 
-BLUE=(20, 40, 150)
-RED=(180, 10, 10)
-bloody_fnt = pygame.font.Font("fnt/bloody.ttf", 24)
 menu_top = 30
 menu_left = 10
 
 fonts = {"widget": "fnt/FreeSans.ttf", "title": "fnt/FreeSans.ttf", "mono": "fnt/FreeMono.ttf"}
 sgc.Font.set_fonts(fonts)
 
-
 screen = sgc.surface.Screen((480, 320))
 
 clock = pygame.time.Clock()
 
 
-btn = ClickButton(label="Next", 
-                  pos=(360, 260),
+btn = ClickButton(label="Start", 
+                  pos=(menu_left, menu_top),
                   col = (0, 200, 0),
                   label_col = (0, 0, 0))
 
 
-button2 = sgc.Button(col=(180, 20, 0), 
+button2 = sgc.Button(col=(200, 200, 0), 
                      label_col =(0,0,0),  
                      label = "Quit", 
-                     pos=(10,260))
+                     pos=(menu_left, menu_top + 60))
 
 # cool use of assigning the method "on_click" to a pre-defined function
 button2.on_click = game_quit
 
 
 combo_a = sgc.Combo(pos=(250, menu_top), 
-                    label="Locate Animal", 
+                    label="Choose Character", 
                     label_side="top",
-                    values=("dog", "cat", "mouse", "mongoose"),
-                    selection=1)
+                    values=("dog", "cat", "mouse", "mongoose"))
 
 
-switch = sgc.Switch(label="Animal Satellite DB (Cost)",
-                    label_side="top",
-                    pos=(300, 200))
-
-
-radio_a = sgc.Radio(label = "Max GPS (affects battery)",
+radio_a = sgc.Radio(pos = (menu_left, menu_top +200),
+                    label = "Enable GPS",
                     lable_side = "right",
-                    group = "first_group",
-                    active=True)
-radio_b = sgc.Radio(group = "first_group", label = "GPS checked every 5 min")
-radio_c = sgc.Radio(group = "first_group", label = "Disable GPS")
-radio_box = sgc.VBox(widgets=(radio_a, radio_b, radio_c), 
-                     pos = (menu_left, menu_top))
-
-scale = sgc.Scale(pos=(10, 200),
-                  show_value=4,
-                  label="Search Radius (miles)",
-                  label_side="top")
-scale.add(order=5)
-
-label = sgc.Label(pos=(20, 20),
-                  col=RED,
-                  text=("Welcome to the animal capture system\n" +
-                        "for diseased animals with virus ZQ85H.\n" + 
-                        "a lethal zombie virus."),
-                  font=bloody_fnt)
-
+                    group = "first_group")
 
 def main():
 
     btn.add(0)
     button2.add(1)
     combo_a.add(2)
-    radio_box.add(3)
-    switch.add(4)
+    radio_a.add(3)
 
     btn.level = 1
     level = btn.level
@@ -128,14 +99,10 @@ def main():
         level = btn.level
         if level == 2:
             if btn.config_set == False:
-                screen_color = BLUE
+                screen_color = (0, 200, 0)
                 btn.remove(fade=False)
-                radio_box.remove(fade=False)
-                combo_a.remove(fade = False)
-                scale.remove(fade=False)
-                switch.remove(fade=False)
+                combo_a.remove(fade=False)
                 print("configured 2nd screen settings")
-                label.add()
                 btn.config_set = True
 
         screen.fill(screen_color)
