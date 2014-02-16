@@ -1,0 +1,297 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Menu Format &mdash; SGC 0.2.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within SGC 0.2.1 documentation"
+          href="_static/opensearch.xml"/>
+    <link rel="top" title="SGC 0.2.1 documentation" href="index.html" />
+    <link rel="up" title="Widget Developers" href="dev.html" />
+    <link rel="prev" title="Interfaces" href="dev.interfaces.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="dev.interfaces.html" title="Interfaces"
+             accesskey="P">previous</a></li>
+        <li><a href="index.html">SGC 0.2.1 documentation</a> &raquo;</li>
+          <li><a href="dev.html" accesskey="U">Widget Developers</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="menu-format">
+<h1>Menu Format<a class="headerlink" href="#menu-format" title="Permalink to this headline">¶</a></h1>
+<p>Here we are going to look at the format used for menu data.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">At this time users will need to create this manually, but eventually there
+will be a menu creator that will allow creation of menus through a
+drag &#8216;n&#8217; drop interface.</p>
+</div>
+<p>The menu format uses a fairly simple JSON format. We will look at the menu
+created in the <tt class="docutils literal"><span class="pre">example/test.py</span></tt> program:</p>
+<div class="highlight-javascript"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16</pre></div></td><td class="code"><div class="highlight"><pre><span class="p">[</span><span class="s2">&quot;m:Main Menu&quot;</span><span class="p">,</span>
+    <span class="p">[</span><span class="s2">&quot;m:Sub-menu&quot;</span><span class="p">,</span>
+        <span class="p">[</span><span class="s2">&quot;w:InputBox&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;input&quot;</span><span class="p">,</span> <span class="s2">&quot;label&quot;</span><span class="o">:</span> <span class="s2">&quot;Input&quot;</span><span class="p">,</span> <span class="s2">&quot;default&quot;</span><span class="o">:</span> <span class="s2">&quot;start typing&quot;</span><span class="p">}],</span>
+        <span class="s2">&quot;Category/divider&quot;</span><span class="p">,</span>
+        <span class="p">[</span><span class="s2">&quot;w:Button&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;btn&quot;</span><span class="p">,</span> <span class="s2">&quot;label&quot;</span><span class="o">:</span> <span class="s2">&quot;Click\nhere&quot;</span><span class="p">,</span> <span class="s2">&quot;on_click&quot;</span><span class="o">:</span> <span class="s2">&quot;$print_input&quot;</span><span class="p">}]</span>
+    <span class="p">],</span>
+    <span class="p">[</span><span class="s2">&quot;m:Settings&quot;</span><span class="p">,</span>
+        <span class="p">[</span><span class="s2">&quot;m:Graphic Settings&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;Graphic stuff&quot;</span>
+        <span class="p">],</span>
+        <span class="p">[</span><span class="s2">&quot;m:Sound Settings&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;Sound stuff&quot;</span>
+        <span class="p">]</span>
+    <span class="p">],</span>
+    <span class="p">[</span><span class="s2">&quot;f:Quit&quot;</span><span class="p">,</span> <span class="s2">&quot;remove&quot;</span><span class="p">]</span>
+<span class="p">]</span>
+</pre></div>
+</td></tr></table></div>
+<p>The file is available as <tt class="docutils literal"><span class="pre">example/menu</span></tt> in the
+source distribution.</p>
+<div class="section" id="breakdown">
+<h2>Breakdown<a class="headerlink" href="#breakdown" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="menus">
+<h3>Menus<a class="headerlink" href="#menus" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><pre>["m:Main Menu",
+</pre>
+</div>
+<p>The menu data must begin with an array at the top-level. The first item of this
+array must be a string beginning with &#8220;m:&#8221;, this signals the current item is a
+menu. The rest of the string following the &#8220;m:&#8221; is the title to be displayed
+at the top of this menu.</p>
+<p>Each item in the array following is an item to be displayed in the menu.
+Items will be displayed in the order they appear. So, this first array means the
+menu has the title &#8220;Main Menu&#8221; and will display 3 items.</p>
+<hr class="docutils" />
+<div class="highlight-python"><div class="highlight"><pre>    <span class="p">[</span><span class="s">&quot;m:Sub-menu&quot;</span><span class="p">,</span>
+        <span class="p">[</span><span class="s">&quot;w:InputBox&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s">&quot;name&quot;</span><span class="p">:</span> <span class="s">&quot;input&quot;</span><span class="p">,</span> <span class="s">&quot;label&quot;</span><span class="p">:</span> <span class="s">&quot;Input&quot;</span><span class="p">,</span> <span class="s">&quot;default&quot;</span><span class="p">:</span> <span class="s">&quot;start typing&quot;</span><span class="p">}],</span>
+        <span class="s">&quot;Category/divider&quot;</span><span class="p">,</span>
+        <span class="p">[</span><span class="s">&quot;w:Button&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s">&quot;name&quot;</span><span class="p">:</span> <span class="s">&quot;btn&quot;</span><span class="p">,</span> <span class="s">&quot;label&quot;</span><span class="p">:</span> <span class="s">&quot;Click</span><span class="se">\n</span><span class="s">here&quot;</span><span class="p">,</span> <span class="s">&quot;on_click&quot;</span><span class="p">:</span> <span class="s">&quot;$print_input&quot;</span><span class="p">}]</span>
+    <span class="p">],</span>
+</pre></div>
+</div>
+<p>The first item in the main menu, is another menu. This will display a sub-menu
+when clicked from the main menu. The title &#8220;Sub-menu&#8221; will be displayed both as
+the title when the menu is displayed, and also as the name of the item in it&#8217;s
+parent menu.</p>
+<p>Again, this creates a menu with 3 items, which can be accessed from the
+parent menu.</p>
+</div>
+<div class="section" id="widgets">
+<h3>Widgets<a class="headerlink" href="#widgets" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre>        <span class="p">[</span><span class="s">&quot;w:InputBox&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s">&quot;name&quot;</span><span class="p">:</span> <span class="s">&quot;input&quot;</span><span class="p">,</span> <span class="s">&quot;label&quot;</span><span class="p">:</span> <span class="s">&quot;Input&quot;</span><span class="p">,</span> <span class="s">&quot;default&quot;</span><span class="p">:</span> <span class="s">&quot;start typing&quot;</span><span class="p">}],</span>
+</pre></div>
+</div>
+<p>This line creates a widget to be displayed in the sub-menu. Like the menu, the
+first item must be a string defining the object. It must begin with &#8220;w:&#8221; to
+signal that this should be a widget. The text following the &#8220;w:&#8221; specifies the
+widget type.</p>
+<p>If you want to use one of the native widgets, then you must simply name the
+widget using it&#8217;s class name, such as &#8220;InputBox&#8221; or &#8220;Radio&#8221;. If you want to
+import a custom widget you must specify a full import path for the widget, such
+as &#8220;foo.bar.CustomWidget&#8221;.</p>
+<p>The second item must be an object. This should contain the key:value options
+to be passed into the widget to configure it&#8217;s behaviour. Look at the widget&#8217;s
+config() method to see what arguments are accepted.</p>
+<p>The &#8220;name&#8221; key is an extra key used by the menu. This key specifies a name
+that the widget can be indexed by. The name used for this widget is &#8220;input&#8221;, so
+after using this file in a menu, I can use my_menu[&#8220;input&#8221;] to access that input
+box.</p>
+</div>
+<div class="section" id="dividers">
+<h3>Dividers<a class="headerlink" href="#dividers" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre>        <span class="s">&quot;Category/divider&quot;</span><span class="p">,</span>
+</pre></div>
+</div>
+<p>An item which is just a string will be used a sub-title or divider. The contents
+of the string will be used as the text for the divider. The resulting divider
+will be a non-interactive object in the menu.</p>
+</div>
+<div class="section" id="tokens">
+<h3>Tokens<a class="headerlink" href="#tokens" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre>        <span class="p">[</span><span class="s">&quot;w:Button&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s">&quot;name&quot;</span><span class="p">:</span> <span class="s">&quot;btn&quot;</span><span class="p">,</span> <span class="s">&quot;label&quot;</span><span class="p">:</span> <span class="s">&quot;Click</span><span class="se">\n</span><span class="s">here&quot;</span><span class="p">,</span> <span class="s">&quot;on_click&quot;</span><span class="p">:</span> <span class="s">&quot;$print_input&quot;</span><span class="p">}]</span>
+</pre></div>
+</div>
+<p>This line creates another widget, this time a button. You&#8217;ll notice one of the
+arguments this time begins with a &#8216;$&#8217;. This is a token that tells the menu that
+it refers to a function object. When the menu parses this text it will look in
+the menu&#8217;s <a class="reference internal" href="#func-dict"><em>Func dictionary</em></a> for &#8220;print_input&#8221; and replace this string with the
+found object.</p>
+<p>If you want to create an object dynamically you can also add the syntax
+to call a function. For example, <cite>$foo(&#8220;bar&#8221;)</cite> will call the function found
+passing &#8220;bar&#8221; as an argument, the original string will then be replaced by
+whatever is returned by this function.</p>
+<hr class="docutils" />
+<div class="highlight-python"><div class="highlight"><pre>    <span class="p">[</span><span class="s">&quot;m:Settings&quot;</span><span class="p">,</span>
+        <span class="p">[</span><span class="s">&quot;m:Graphic Settings&quot;</span><span class="p">,</span>
+            <span class="s">&quot;Graphic stuff&quot;</span>
+        <span class="p">],</span>
+        <span class="p">[</span><span class="s">&quot;m:Sound Settings&quot;</span><span class="p">,</span>
+            <span class="s">&quot;Sound stuff&quot;</span>
+        <span class="p">]</span>
+    <span class="p">],</span>
+</pre></div>
+</div>
+<p>These lines creates a second sub-menu, containing two sub-menus itself, each
+with a divider.</p>
+</div>
+<div class="section" id="functions">
+<h3>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre>    <span class="p">[</span><span class="s">&quot;f:Quit&quot;</span><span class="p">,</span> <span class="s">&quot;remove&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>This final item creates a function object. Again, the first item must be a
+string, with the &#8220;f:&#8221; signalling that this is a function object. Following the
+&#8220;f:&#8221; is the text that should be displayed in the menu. The second item is the
+function that will be called when this item is clicked. This string will be
+looked up in the menu&#8217;s <a class="reference internal" href="#func-dict"><em>Func dictionary</em></a> as before, though the &#8216;$&#8217; is
+optional in this circumstance.</p>
+</div>
+</div>
+<div class="section" id="func-dictionary">
+<span id="func-dict"></span><h2>Func dictionary<a class="headerlink" href="#func-dictionary" title="Permalink to this headline">¶</a></h2>
+<p>When creating a menu using this format, you will need to specify a function
+dictionary through inheritance. Here is the above example being used:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">MainMenu</span><span class="p">(</span><span class="n">sgc</span><span class="o">.</span><span class="n">Menu</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create a subclass for custom functions.&quot;&quot;&quot;</span>
+
+    <span class="n">func_dict</span> <span class="o">=</span> <span class="k">lambda</span> <span class="bp">self</span><span class="p">:</span> <span class="p">{</span><span class="s">&quot;print_input&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">print_input</span><span class="p">,</span>
+                              <span class="s">&quot;remove&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">remove</span><span class="p">}</span>
+
+    <span class="k">def</span> <span class="nf">print_input</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">print</span> <span class="bp">self</span><span class="p">[</span><span class="s">&quot;input&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">text</span>
+</pre></div>
+</div>
+<p>As seen above, you must assign func_dict a lambda accepting the self argument.
+This lambda must return a dictionary containing the token names as the keys,
+and the actual functions as the values.</p>
+</div>
+<div class="section" id="doing-this-in-code">
+<h2>Doing this in code<a class="headerlink" href="#doing-this-in-code" title="Permalink to this headline">¶</a></h2>
+<p>This can also be all done in code, using lists and dictionaries instead of JSON.
+You may also use tuples in place of lists. You can&#8217;t use tokens if you choose
+to do this in code, as you can pass in function objects directly.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Menu Format</a><ul>
+<li><a class="reference internal" href="#breakdown">Breakdown</a><ul>
+<li><a class="reference internal" href="#menus">Menus</a></li>
+<li><a class="reference internal" href="#widgets">Widgets</a></li>
+<li><a class="reference internal" href="#dividers">Dividers</a></li>
+<li><a class="reference internal" href="#tokens">Tokens</a></li>
+<li><a class="reference internal" href="#functions">Functions</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#func-dictionary">Func dictionary</a></li>
+<li><a class="reference internal" href="#doing-this-in-code">Doing this in code</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="dev.interfaces.html"
+                        title="previous chapter">Interfaces</a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="dev.interfaces.html" title="Interfaces"
+             >previous</a></li>
+        <li><a href="index.html">SGC 0.2.1 documentation</a> &raquo;</li>
+          <li><a href="dev.html" >Widget Developers</a> &raquo;</li> 
+      </ul>
+    </div>
+    
+    <div class="footer">
+        &copy; Copyright 2012, Sam Bull.
+    </div>
+    <!-- Start of StatCounter Code for Default Guide -->
+    <script type="text/javascript">
+    var sc_project=7769961; 
+    var sc_invisible=1; 
+    var sc_security="3bce5671"; 
+    </script>
+    <script type="text/javascript"
+    src="http://www.statcounter.com/counter/counter_xhtml.js"></script>
+    <noscript><div class="statcounter"><a title="vBulletin
+    statistic" href="http://statcounter.com/vbulletin/"
+    class="statcounter"><img class="statcounter"
+    src="http://c.statcounter.com/7769961/0/3bce5671/1/"
+    alt="vBulletin statistic" /></a></div></noscript>
+    <!-- End of StatCounter Code for Default Guide -->
+
+  </body>
+</html>

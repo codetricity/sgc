@@ -1,0 +1,1143 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>widgets Package &mdash; SGC 0.2.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within SGC 0.2.1 documentation"
+          href="_static/opensearch.xml"/>
+    <link rel="top" title="SGC 0.2.1 documentation" href="index.html" />
+    <link rel="up" title="sgc Package" href="sgc.html" />
+    <link rel="next" title="Widget Developers" href="dev.html" />
+    <link rel="prev" title="sgc Package" href="sgc.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="dev.html" title="Widget Developers"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="sgc.html" title="sgc Package"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">SGC 0.2.1 documentation</a> &raquo;</li>
+          <li><a href="sgc.html" accesskey="U">sgc Package</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-sgc.widgets">
+<span id="widgets-package"></span><h1>widgets Package<a class="headerlink" href="#module-sgc.widgets" title="Permalink to this headline">¶</a></h1>
+<dl class="docutils">
+<dt>Widgets:</dt>
+<dd><div class="first last line-block">
+<div class="line"><a class="reference internal" href="#sgc.widgets.base_widget.Simple" title="sgc.widgets.base_widget.Simple"><tt class="xref py py-class docutils literal"><span class="pre">Simple</span></tt></a>: Simple widget that does nothing. May be useful for images etc.</div>
+<div class="line"><a class="reference internal" href="#sgc.widgets.button.Button" title="sgc.widgets.button.Button"><tt class="xref py py-class docutils literal"><span class="pre">Button</span></tt></a>: Clickable button.</div>
+<div class="line"><a class="reference internal" href="#sgc.widgets.combo.Combo" title="sgc.widgets.combo.Combo"><tt class="xref py py-class docutils literal"><span class="pre">Combo</span></tt></a>: Combo box.</div>
+<div class="line"><a class="reference internal" href="#sgc.widgets.fps_counter.FPSCounter" title="sgc.widgets.fps_counter.FPSCounter"><tt class="xref py py-class docutils literal"><span class="pre">FPSCounter</span></tt></a>: FPS counter.</div>
+<div class="line"><a class="reference internal" href="#sgc.widgets.input_box.InputBox" title="sgc.widgets.input_box.InputBox"><tt class="xref py py-class docutils literal"><span class="pre">InputBox</span></tt></a>: Input box.</div>
+<div class="line"><a class="reference internal" href="#sgc.widgets.label.Label" title="sgc.widgets.label.Label"><tt class="xref py py-class docutils literal"><span class="pre">Label</span></tt></a>: Label.</div>
+<div class="line"><a class="reference internal" href="#sgc.widgets.menu.Menu" title="sgc.widgets.menu.Menu"><tt class="xref py py-class docutils literal"><span class="pre">Menu</span></tt></a>: Game menu.</div>
+<div class="line"><a class="reference internal" href="#sgc.widgets.radio_button.Radio" title="sgc.widgets.radio_button.Radio"><tt class="xref py py-class docutils literal"><span class="pre">Radio</span></tt></a>: Radio button.</div>
+<div class="line"><a class="reference internal" href="#module-sgc.widgets.settings" title="sgc.widgets.settings"><tt class="xref py py-class docutils literal"><span class="pre">settings</span></tt></a>: TODO (Stay away). Common user settings (keymap etc.)</div>
+<div class="line"><a class="reference internal" href="#sgc.widgets.scale.Scale" title="sgc.widgets.scale.Scale"><tt class="xref py py-class docutils literal"><span class="pre">Scale</span></tt></a>: Scale slider.</div>
+<div class="line"><a class="reference internal" href="#sgc.widgets.switch.Switch" title="sgc.widgets.switch.Switch"><tt class="xref py py-class docutils literal"><span class="pre">Switch</span></tt></a>: Switch widget.</div>
+</div>
+</dd>
+<dt>Container widgets:</dt>
+<dd><div class="first last line-block">
+<div class="line"><a class="reference internal" href="#sgc.widgets.container.Container" title="sgc.widgets.container.Container"><tt class="xref py py-class docutils literal"><span class="pre">Container</span></tt></a>: Basic container, holds a group of other widgets and handles</div>
+<div class="line-block">
+<div class="line">focus between them.</div>
+</div>
+<div class="line"><a class="reference internal" href="#sgc.widgets.boxes.VBox" title="sgc.widgets.boxes.VBox"><tt class="xref py py-class docutils literal"><span class="pre">VBox</span></tt></a>: Automatically aligns widgets into a vertical column.</div>
+<div class="line"><a class="reference internal" href="#sgc.widgets.boxes.HBox" title="sgc.widgets.boxes.HBox"><tt class="xref py py-class docutils literal"><span class="pre">HBox</span></tt></a>: Automatically aligns widgets into a horizontal row.</div>
+<div class="line"><a class="reference internal" href="#sgc.widgets.dialog.Dialog" title="sgc.widgets.dialog.Dialog"><tt class="xref py py-class docutils literal"><span class="pre">Dialog</span></tt></a>: Dialog window.</div>
+<div class="line"><a class="reference internal" href="#sgc.widgets.scroll_box.ScrollBox" title="sgc.widgets.scroll_box.ScrollBox"><tt class="xref py py-class docutils literal"><span class="pre">ScrollBox</span></tt></a>: Allows another widget to be scrollable.</div>
+</div>
+</dd>
+<dt>Composite widgets:</dt>
+<dd><div class="first last line-block">
+<div class="line"><a class="reference internal" href="#sgc.widgets.composite.dialogs.DialogSaveQuit" title="sgc.widgets.composite.dialogs.DialogSaveQuit"><tt class="xref py py-class docutils literal"><span class="pre">DialogSaveQuit</span></tt></a>: Dialog asking the user if they want to save their work when quitting.</div>
+</div>
+</dd>
+</dl>
+<div class="section" id="core-widgets">
+<h2>Core Widgets<a class="headerlink" href="#core-widgets" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-sgc.widgets.base_widget">
+<span id="base-widget-module"></span><h3><tt class="xref py py-mod docutils literal"><span class="pre">base_widget</span></tt> Module<a class="headerlink" href="#module-sgc.widgets.base_widget" title="Permalink to this headline">¶</a></h3>
+<p>Base widget, all widgets inherit from this.</p>
+<dl class="class">
+<dt id="sgc.widgets.base_widget.Simple">
+<em class="property">class </em><tt class="descname">Simple</tt><big>(</big><em>surf=None</em>, <em>flags=None</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#sgc.widgets.base_widget.Simple" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">pygame.sprite.Sprite</span></tt></p>
+<p>Widget foundations all widgets should inherit from.
+This can also be used as a simple widget that does nothing, such as
+displaying an image.</p>
+<dl class="docutils">
+<dt>Attributes:</dt>
+<dd><div class="first last line-block">
+<div class="line">image: The current surface that will be drawn to the screen.</div>
+<div class="line">rect: The <tt class="docutils literal"><span class="pre">pygame.Rect</span></tt> used for the widget&#8217;s position and size.</div>
+<div class="line">rect_abs: A <tt class="docutils literal"><span class="pre">pygame.Rect</span></tt> using the absolute screen position.</div>
+<div class="line">pos: The widget&#8217;s position. Can be retrieved or assigned as a shortcut</div>
+<div class="line-block">
+<div class="line">for rect.topleft. Also a shortcut for setting pos through config().</div>
+</div>
+<div class="line">pos_abs: The widget&#8217;s absolute screen position.</div>
+</div>
+</dd>
+<dt>Args:</dt>
+<dd><div class="first last line-block">
+<div class="line">surf: The surface that should be drawn to screen, of type:</div>
+<div class="line-block">
+<div class="line">pygame.Surface: Use an existing surface.</div>
+<div class="line">tuple,list: Contains size as (width,height), creates a new surface.</div>
+<div class="line">str: Contains file name to load an image.</div>
+<div class="line">dict: Contains multiple images to be loaded. The documentation will</div>
+<div class="line-block">
+<div class="line">specify if a widget uses multiple images and what names to use.</div>
+</div>
+</div>
+<div class="line">flags: Override the flags passed to <cite>pygame.surface.Surface</cite>.</div>
+<div class="line">kwargs: Any number of keyword arguments matching those for config().</div>
+</div>
+</dd>
+</dl>
+<dl class="method">
+<dt id="sgc.widgets.base_widget.Simple.config">
+<tt class="descname">config</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#sgc.widgets.base_widget.Simple.config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update widget configuration and redraw the widget.</p>
+<dl class="docutils">
+<dt>Keyword Args:</dt>
+<dd><div class="first last line-block">
+<div class="line">pos: <tt class="docutils literal"><span class="pre">tuple</span></tt> (x,y) Position to set widget to.</div>
+<div class="line">label: <tt class="docutils literal"><span class="pre">str</span></tt> Text to display next to widget.</div>
+<div class="line">label_side: <tt class="docutils literal"><span class="pre">str</span></tt> <cite>(&#8220;top&#8221;, &#8220;right&#8221;, &#8220;bottom&#8221;, &#8220;left&#8221;)</cite></div>
+<div class="line-block">
+<div class="line">Which side of the widget to display the label.</div>
+</div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="sgc.widgets.base_widget.Simple.add">
+<tt class="descname">add</tt><big>(</big><em>order=None</em>, <em>fade=True</em>, <em>focus=False</em><big>)</big><a class="headerlink" href="#sgc.widgets.base_widget.Simple.add" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add widget to screen.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><div class="first last line-block">
+<div class="line">order: Integer representing the order widget should receive focus</div>
+<div class="line-block">
+<div class="line">when user presses TAB. The widget with the lowest order will</div>
+<div class="line">receive focus first, then moving up with increasing values.</div>
+</div>
+<div class="line">fade: True if widget should fade in, False if not.</div>
+<div class="line">focus: To focus widget immediately, use 1 if focused by keyboard,</div>
+<div class="line-block">
+<div class="line">2 if by mouse, otherwise 0.</div>
+</div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="sgc.widgets.base_widget.Simple.remove">
+<tt class="descname">remove</tt><big>(</big><em>fade=True</em><big>)</big><a class="headerlink" href="#sgc.widgets.base_widget.Simple.remove" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove widget from screen.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><div class="first last line-block">
+<div class="line">fade: True if widget should fade out.</div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="sgc.widgets.base_widget.Simple.active">
+<tt class="descname">active</tt><big>(</big><big>)</big><a class="headerlink" href="#sgc.widgets.base_widget.Simple.active" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return True if widget is active (onscreen).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sgc.widgets.base_widget.Simple.has_focus">
+<tt class="descname">has_focus</tt><big>(</big><big>)</big><a class="headerlink" href="#sgc.widgets.base_widget.Simple.has_focus" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return True if this widget has focus.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-sgc.widgets.button">
+<span id="button-module"></span><h3><tt class="xref py py-mod docutils literal"><span class="pre">button</span></tt> Module<a class="headerlink" href="#module-sgc.widgets.button" title="Permalink to this headline">¶</a></h3>
+<p>Button widget, allows input from the user clicking the button.</p>
+<img alt="Button" class="align-right" src="_images/button.png" />
+<dl class="class">
+<dt id="sgc.widgets.button.Button">
+<em class="property">class </em><tt class="descname">Button</tt><big>(</big><em>surf=None</em>, <em>flags=None</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#sgc.widgets.button.Button" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#sgc.widgets.base_widget.Simple" title="sgc.widgets.base_widget.Simple"><tt class="xref py py-class docutils literal"><span class="pre">sgc.widgets.base_widget.Simple</span></tt></a></p>
+<p>A clickable button.</p>
+<dl class="docutils">
+<dt>Images:</dt>
+<dd><div class="first last line-block">
+<div class="line">&#8216;image&#8217;: The default button state.</div>
+<div class="line">&#8216;over&#8217;: The image used when the cursor is hovering over the button.</div>
+<div class="line">&#8216;down&#8217;: The image used when the user is clicking down on the button.</div>
+</div>
+</dd>
+</dl>
+<dl class="method">
+<dt id="sgc.widgets.button.Button.config">
+<tt class="descname">config</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#sgc.widgets.button.Button.config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update widget configuration and redraw the widget.</p>
+<dl class="docutils">
+<dt>Keyword Args:</dt>
+<dd><div class="first last line-block">
+<div class="line">pos: <tt class="docutils literal"><span class="pre">tuple</span></tt> (x,y) Position to set widget to.</div>
+<div class="line">label: <tt class="docutils literal"><span class="pre">str</span></tt> Text to display on the button.</div>
+<div class="line">col: <tt class="docutils literal"><span class="pre">tuple</span></tt> (r,g,b) The central colour used if no image is</div>
+<div class="line-block">
+<div class="line">provided. If you want to avoid the colours saturating keep the</div>
+<div class="line">RGB values below 200.</div>
+</div>
+<div class="line">label_col: <tt class="docutils literal"><span class="pre">tuple</span></tt> (r,g,b) The text colour for the button&#8217;s label.</div>
+<div class="line">label_font: Font object for label.</div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="sgc.widgets.button.Button.on_click">
+<tt class="descname">on_click</tt><big>(</big><big>)</big><a class="headerlink" href="#sgc.widgets.button.Button.on_click" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called when the button is clicked through either mouse or keyboard.</p>
+<p>Emits an event with attribute &#8216;gui_type&#8217; == &#8220;click&#8221;.</p>
+<p>Override this function to use as a callback handler.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-sgc.widgets.combo">
+<span id="combo-module"></span><h3><tt class="xref py py-mod docutils literal"><span class="pre">combo</span></tt> Module<a class="headerlink" href="#module-sgc.widgets.combo" title="Permalink to this headline">¶</a></h3>
+<p>Combo box widget, allows the user to choose an option from a selection.</p>
+<img alt="Combo Box" class="align-right" src="_images/combo.png" />
+<dl class="class">
+<dt id="sgc.widgets.combo.Combo">
+<em class="property">class </em><tt class="descname">Combo</tt><big>(</big><em>surf=None</em>, <em>flags=None</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#sgc.widgets.combo.Combo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#sgc.widgets.base_widget.Simple" title="sgc.widgets.base_widget.Simple"><tt class="xref py py-class docutils literal"><span class="pre">sgc.widgets.base_widget.Simple</span></tt></a></p>
+<p>A combo box.</p>
+<dl class="docutils">
+<dt>Attributes:</dt>
+<dd><div class="first last line-block">
+<div class="line">selection: <tt class="docutils literal"><span class="pre">int</span></tt> Set or retrieve index of current selection.</div>
+</div>
+</dd>
+</dl>
+<dl class="method">
+<dt id="sgc.widgets.combo.Combo.config">
+<tt class="descname">config</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#sgc.widgets.combo.Combo.config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update widget configuration and redraw the widget.</p>
+<dl class="docutils">
+<dt>Keyword Args:</dt>
+<dd><div class="first last line-block">
+<div class="line">pos: <tt class="docutils literal"><span class="pre">tuple</span></tt> (x,y) Position to set widget to.</div>
+<div class="line">label: <tt class="docutils literal"><span class="pre">str</span></tt> Text to display next to widget.</div>
+<div class="line">label_side: <tt class="docutils literal"><span class="pre">str</span></tt> <cite>(&#8220;top&#8221;, &#8220;right&#8221;, &#8220;bottom&#8221;, &#8220;left&#8221;)</cite></div>
+<div class="line-block">
+<div class="line">Which side of the widget to display the label.</div>
+</div>
+<div class="line">selection: Index of current selection, None if none selected.</div>
+<div class="line">values: Sequence of strings to allow the user to select from.</div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="sgc.widgets.combo.Combo.on_select">
+<tt class="descname">on_select</tt><big>(</big><big>)</big><a class="headerlink" href="#sgc.widgets.combo.Combo.on_select" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called when the selection is changed.</p>
+<p>Emits an event with attribute &#8216;gui_type&#8217; == &#8220;select&#8221;,
+&#8216;selection&#8217; == index of selection made and
+&#8216;value&#8217; == value of selection made.</p>
+<p>Override this function to use as a callback handler.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-sgc.widgets.fps_counter">
+<span id="fps-counter-module"></span><h3><tt class="xref py py-mod docutils literal"><span class="pre">fps_counter</span></tt> Module<a class="headerlink" href="#module-sgc.widgets.fps_counter" title="Permalink to this headline">¶</a></h3>
+<p>FPS counter, display current FPS performance to the user.</p>
+<img alt="FPS Counter" class="align-right" src="_images/fps_counter.png" />
+<dl class="class">
+<dt id="sgc.widgets.fps_counter.FPSCounter">
+<em class="property">class </em><tt class="descname">FPSCounter</tt><big>(</big><em>surf=None</em>, <em>flags=None</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#sgc.widgets.fps_counter.FPSCounter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#sgc.widgets.base_widget.Simple" title="sgc.widgets.base_widget.Simple"><tt class="xref py py-class docutils literal"><span class="pre">sgc.widgets.base_widget.Simple</span></tt></a></p>
+<p>FPS counter</p>
+<dl class="method">
+<dt id="sgc.widgets.fps_counter.FPSCounter.config">
+<tt class="descname">config</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#sgc.widgets.fps_counter.FPSCounter.config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update widget configuration and redraw the widget.</p>
+<dl class="docutils">
+<dt>Keyword Args:</dt>
+<dd><div class="first last line-block">
+<div class="line">pos: <tt class="docutils literal"><span class="pre">tuple</span></tt> (x,y) Position to set widget to.</div>
+<div class="line">clock: <tt class="docutils literal"><span class="pre">pygame.time.Clock</span></tt> Clock used to time the game loop.</div>
+<div class="line">label: <tt class="docutils literal"><span class="pre">str</span></tt> Text to display in front of the value.</div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="sgc.widgets.fps_counter.FPSCounter.toggle">
+<tt class="descname">toggle</tt><big>(</big><big>)</big><a class="headerlink" href="#sgc.widgets.fps_counter.FPSCounter.toggle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Toggle the FPS counter, adding or removing this widget.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-sgc.widgets.input_box">
+<span id="input-box-module"></span><h3><tt class="xref py py-mod docutils literal"><span class="pre">input_box</span></tt> Module<a class="headerlink" href="#module-sgc.widgets.input_box" title="Permalink to this headline">¶</a></h3>
+<p>Input Box for receiving text input.</p>
+<img alt="Input Box" class="align-right" src="_images/input_box.png" />
+<dl class="class">
+<dt id="sgc.widgets.input_box.InputBox">
+<em class="property">class </em><tt class="descname">InputBox</tt><big>(</big><em>surf=None</em>, <em>flags=None</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#sgc.widgets.input_box.InputBox" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#sgc.widgets.base_widget.Simple" title="sgc.widgets.base_widget.Simple"><tt class="xref py py-class docutils literal"><span class="pre">sgc.widgets.base_widget.Simple</span></tt></a>, <a class="reference internal" href="dev.interfaces.html#sgc.widgets._interface.text.SelectableText" title="sgc.widgets._interface.text.SelectableText"><tt class="xref py py-class docutils literal"><span class="pre">sgc.widgets._interface.text.SelectableText</span></tt></a></p>
+<p>Input box</p>
+<dl class="docutils">
+<dt>Attributes:</dt>
+<dd><div class="first last line-block">
+<div class="line">text: Text entered in input box. Can be set or retrieved directly.</div>
+</div>
+</dd>
+<dt>Images:</dt>
+<dd><div class="first last line-block">
+<div class="line">&#8216;image&#8217;: The background of the input box when focused.</div>
+<div class="line">&#8216;inactive&#8217;: The background of the input box when not focused.</div>
+</div>
+</dd>
+</dl>
+<dl class="method">
+<dt id="sgc.widgets.input_box.InputBox.config">
+<tt class="descname">config</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#sgc.widgets.input_box.InputBox.config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update widget configuration and redraw the widget.</p>
+<dl class="docutils">
+<dt>Keyword Args:</dt>
+<dd><div class="first last line-block">
+<div class="line">pos: <tt class="docutils literal"><span class="pre">tuple</span></tt> (x,y) Position to set widget to.</div>
+<div class="line">label: <tt class="docutils literal"><span class="pre">str</span></tt> Text to display next to widget.</div>
+<div class="line">label_side: <tt class="docutils literal"><span class="pre">str</span></tt> <cite>(&#8220;top&#8221;, &#8220;right&#8221;, &#8220;bottom&#8221;, &#8220;left&#8221;)</cite></div>
+<div class="line-block">
+<div class="line">Which side of the widget to display the label.</div>
+</div>
+<div class="line">default: <tt class="docutils literal"><span class="pre">str</span></tt> Contains the default text displayed when nothing</div>
+<div class="line-block">
+<div class="line">has been entered and input box does not have focus.</div>
+</div>
+<div class="line">blink_interval: <tt class="docutils literal"><span class="pre">int</span></tt> Milliseconds between cursor blink.</div>
+<div class="line">col_focus: <tt class="docutils literal"><span class="pre">tuple</span></tt> (r,g,b) Background colour when focused.</div>
+<div class="line">col_focus_not: <tt class="docutils literal"><span class="pre">tuple</span></tt> (r,g,b) Background colour when not focused.</div>
+<div class="line">col_selection: <tt class="docutils literal"><span class="pre">tuple</span></tt> (r,g,b) Colour of selection rectangle.</div>
+<div class="line">max_chars: <tt class="docutils literal"><span class="pre">int</span></tt> Maximum number of characters.</div>
+<div class="line">repeat_begin: <tt class="docutils literal"><span class="pre">int</span></tt> Milliseconds key is held down before repeating.</div>
+<div class="line">repeat_interval: <tt class="docutils literal"><span class="pre">int</span></tt> Milliseconds between key repeats.</div>
+<div class="line">text: <tt class="docutils literal"><span class="pre">str</span></tt> Set the text entered in input box.</div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="sgc.widgets.input_box.InputBox.on_enter">
+<tt class="descname">on_enter</tt><big>(</big><big>)</big><a class="headerlink" href="#sgc.widgets.input_box.InputBox.on_enter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called when the user hits the enter key.</p>
+<p>Emits an event with attribute &#8216;gui_type&#8217; == &#8220;enter&#8221; and
+&#8216;text&#8217; with the text entered.</p>
+<p>Override this function to use as a callback handler.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-sgc.widgets.label">
+<span id="label-module"></span><h3><tt class="xref py py-mod docutils literal"><span class="pre">label</span></tt> Module<a class="headerlink" href="#module-sgc.widgets.label" title="Permalink to this headline">¶</a></h3>
+<p>Label to display information to the user.</p>
+<img alt="Label" class="align-right" src="_images/label.png" />
+<dl class="class">
+<dt id="sgc.widgets.label.Label">
+<em class="property">class </em><tt class="descname">Label</tt><big>(</big><em>surf=None</em>, <em>flags=None</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#sgc.widgets.label.Label" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#sgc.widgets.base_widget.Simple" title="sgc.widgets.base_widget.Simple"><tt class="xref py py-class docutils literal"><span class="pre">sgc.widgets.base_widget.Simple</span></tt></a>, <a class="reference internal" href="dev.interfaces.html#sgc.widgets._interface.text.SelectableText" title="sgc.widgets._interface.text.SelectableText"><tt class="xref py py-class docutils literal"><span class="pre">sgc.widgets._interface.text.SelectableText</span></tt></a></p>
+<p>Label</p>
+<dl class="docutils">
+<dt>Attributes:</dt>
+<dd><div class="first last line-block">
+<div class="line">text: <tt class="docutils literal"><span class="pre">str</span></tt> displayed in label. Can be assigned as a shortcut for</div>
+<div class="line-block">
+<div class="line"><tt class="docutils literal"><span class="pre">config(text=)</span></tt> with no second paramenter.</div>
+</div>
+</div>
+</dd>
+</dl>
+<dl class="method">
+<dt id="sgc.widgets.label.Label.config">
+<tt class="descname">config</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#sgc.widgets.label.Label.config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update widget configuration and redraw the widget.</p>
+<dl class="docutils">
+<dt>Keyword Args:</dt>
+<dd><div class="first last line-block">
+<div class="line">pos: <tt class="docutils literal"><span class="pre">tuple</span></tt> (x,y) Position to set widget to.</div>
+<div class="line">label: <tt class="docutils literal"><span class="pre">str</span></tt> Text to display next to widget.</div>
+<div class="line">label_side: <tt class="docutils literal"><span class="pre">str</span></tt> <cite>(&#8220;top&#8221;, &#8220;right&#8221;, &#8220;bottom&#8221;, &#8220;left&#8221;)</cite></div>
+<div class="line-block">
+<div class="line">Which side of the widget to display the label.</div>
+</div>
+<div class="line">text: Either <tt class="docutils literal"><span class="pre">str</span></tt> containing text to be displayed or</div>
+<div class="line-block">
+<div class="line"><tt class="docutils literal"><span class="pre">tuple</span></tt> containing two strings. First string is text to</div>
+<div class="line">be displayed, second string is rect attribute to be used</div>
+<div class="line">for position. Defaults to &#8216;topleft&#8217; if not passing a tuple.</div>
+</div>
+<div class="line">col: <tt class="docutils literal"><span class="pre">tuple</span></tt> (r,g,b) Text colour.</div>
+<div class="line">font: Font object the label will render with.</div>
+<div class="line">selectable: <tt class="docutils literal"><span class="pre">bool</span></tt> True if the text should be selectable.</div>
+<div class="line">col_selection: <tt class="docutils literal"><span class="pre">tuple</span></tt> (r,g,b) Colour of selection rectangle.</div>
+<div class="line">repeat_begin: <tt class="docutils literal"><span class="pre">int</span></tt> Milliseconds key is held down before repeating.</div>
+<div class="line">repeat_interval: <tt class="docutils literal"><span class="pre">int</span></tt> Milliseconds between key repeats.</div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-sgc.widgets.menu">
+<span id="menu-module"></span><h3><tt class="xref py py-mod docutils literal"><span class="pre">menu</span></tt> Module<a class="headerlink" href="#module-sgc.widgets.menu" title="Permalink to this headline">¶</a></h3>
+<p>Menu widget. Creates a menu for a game.</p>
+<p>The menu data format is documented at <a class="reference internal" href="dev.menu.html"><em>Menu Format</em></a></p>
+<dl class="class">
+<dt id="sgc.widgets.menu.Menu">
+<em class="property">class </em><tt class="descname">Menu</tt><big>(</big><em>surf=None</em>, <em>flags=None</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#sgc.widgets.menu.Menu" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#sgc.widgets.base_widget.Simple" title="sgc.widgets.base_widget.Simple"><tt class="xref py py-class docutils literal"><span class="pre">sgc.widgets.base_widget.Simple</span></tt></a></p>
+<p>Menu</p>
+<p>Can be indexed to access widgets by name.</p>
+<dl class="docutils">
+<dt>Attributes:</dt>
+<dd><div class="first last line-block">
+<div class="line">func_dict: Assign a lambda to return a dictionary of functions for</div>
+<div class="line-block">
+<div class="line">config file to utilise.</div>
+</div>
+</div>
+</dd>
+</dl>
+<dl class="method">
+<dt id="sgc.widgets.menu.Menu.config">
+<tt class="descname">config</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#sgc.widgets.menu.Menu.config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update widget configuration and redraw the widget.</p>
+<dl class="docutils">
+<dt>Keyword Args:</dt>
+<dd><div class="first last line-block">
+<div class="line">pos: <tt class="docutils literal"><span class="pre">tuple</span></tt> (x,y) Position to set widget to.</div>
+<div class="line">label: <tt class="docutils literal"><span class="pre">str</span></tt> Text to display next to widget.</div>
+<div class="line">label_side: <tt class="docutils literal"><span class="pre">str</span></tt> <cite>(&#8220;top&#8221;, &#8220;right&#8221;, &#8220;bottom&#8221;, &#8220;left&#8221;)</cite></div>
+<div class="line-block">
+<div class="line">Which side of the widget to display the label.</div>
+</div>
+<div class="line">menu: Either tuple/list containing menu data, or file object to read</div>
+<div class="line-block">
+<div class="line">config data from in JSON format.</div>
+</div>
+<div class="line">apply: TODO <tt class="docutils literal"><span class="pre">bool</span></tt> True if an apply button should be added.</div>
+<div class="line">col: <tt class="docutils literal"><span class="pre">tuple</span></tt> (r,g,b), Colour used for the background.</div>
+<div class="line">offset: <tt class="docutils literal"><span class="pre">tuple</span></tt> (x,y) Contains position of menu widgets. y is</div>
+<div class="line-block">
+<div class="line">added to bottom of title.</div>
+</div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="sgc.widgets.menu.Menu.change_menu">
+<tt class="descname">change_menu</tt><big>(</big><em>menu_num</em>, <em>fade=True</em><big>)</big><a class="headerlink" href="#sgc.widgets.menu.Menu.change_menu" title="Permalink to this definition">¶</a></dt>
+<dd><p>Change the currently displayed menu.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><div class="first last line-block">
+<div class="line">menu_num: <tt class="docutils literal"><span class="pre">int</span></tt> The number representing the menu.</div>
+<div class="line">fade: <tt class="docutils literal"><span class="pre">bool</span></tt> False if menu should switch immediately without fading.</div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-sgc.widgets.radio_button">
+<span id="radio-button-module"></span><h3><tt class="xref py py-mod docutils literal"><span class="pre">radio_button</span></tt> Module<a class="headerlink" href="#module-sgc.widgets.radio_button" title="Permalink to this headline">¶</a></h3>
+<p>Radio Button, allows the user to select a single option from a group.</p>
+<img alt="Radio Button" class="align-right" src="_images/radio_button.png" />
+<dl class="class">
+<dt id="sgc.widgets.radio_button.Radio">
+<em class="property">class </em><tt class="descname">Radio</tt><big>(</big><em>surf=None</em>, <em>flags=None</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#sgc.widgets.radio_button.Radio" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#sgc.widgets.base_widget.Simple" title="sgc.widgets.base_widget.Simple"><tt class="xref py py-class docutils literal"><span class="pre">sgc.widgets.base_widget.Simple</span></tt></a></p>
+<p>A selectable radio button.</p>
+<dl class="docutils">
+<dt>Attributes:</dt>
+<dd><div class="first last line-block">
+<div class="line">radio_groups: A dictionary containing the active radio button or <tt class="docutils literal"><span class="pre">None</span></tt></div>
+<div class="line-block">
+<div class="line">for each radio group. Key is <tt class="docutils literal"><span class="pre">str</span></tt> containing the name of the group.</div>
+</div>
+<div class="line">selected: True if widget is the currently selected radio button in</div>
+<div class="line-block">
+<div class="line">it&#8217;s group.</div>
+</div>
+</div>
+</dd>
+<dt>Images:</dt>
+<dd><div class="first last line-block">
+<div class="line">&#8216;image&#8217;: The default, inactive button state.</div>
+<div class="line">&#8216;over&#8217;: The image used when the cursor is hovering over the button.</div>
+<div class="line">&#8216;active&#8217;: The image used for the active button in a group</div>
+<div class="line-block">
+<div class="line">(if applicable).</div>
+</div>
+</div>
+</dd>
+</dl>
+<dl class="method">
+<dt id="sgc.widgets.radio_button.Radio.config">
+<tt class="descname">config</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#sgc.widgets.radio_button.Radio.config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update widget configuration and redraw the widget.</p>
+<dl class="docutils">
+<dt>Keyword Args:</dt>
+<dd><div class="first last line-block">
+<div class="line">pos: <tt class="docutils literal"><span class="pre">tuple</span></tt> (x,y) Position to set widget to.</div>
+<div class="line">label: <tt class="docutils literal"><span class="pre">str</span></tt> Text to display next to widget.</div>
+<div class="line">label_side: <tt class="docutils literal"><span class="pre">str</span></tt> <cite>(&#8220;top&#8221;, &#8220;right&#8221;, &#8220;bottom&#8221;, &#8220;left&#8221;)</cite></div>
+<div class="line-block">
+<div class="line">Which side of the widget to display the label.</div>
+</div>
+<div class="line">group: <tt class="docutils literal"><span class="pre">str</span></tt> Name of the group for widget to be added to.</div>
+<div class="line">active: <tt class="docutils literal"><span class="pre">True</span></tt> Makes this the active radio button for it&#8217;s group.</div>
+<div class="line">col: <tt class="docutils literal"><span class="pre">tuple</span></tt> (r,g,b) The colour to be used for the &#8216;over&#8217; image</div>
+<div class="line-block">
+<div class="line">if not using a custom image.</div>
+</div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="sgc.widgets.radio_button.Radio.radio_groups">
+<tt class="descname">radio_groups</tt><em class="property"> = {}</em><a class="headerlink" href="#sgc.widgets.radio_button.Radio.radio_groups" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sgc.widgets.radio_button.Radio.on_select">
+<tt class="descname">on_select</tt><big>(</big><big>)</big><a class="headerlink" href="#sgc.widgets.radio_button.Radio.on_select" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called when the radio button is selected.</p>
+<p>Emits an event with attribute &#8216;gui_type&#8217; == &#8220;select&#8221;.</p>
+<p>Override this function to use as a callback handler.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sgc.widgets.radio_button.Radio.clear">
+<tt class="descname">clear</tt><big>(</big><em>group=None</em><big>)</big><a class="headerlink" href="#sgc.widgets.radio_button.Radio.clear" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clear a group so no radio button is selected.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><div class="first last line-block">
+<div class="line">group: <tt class="docutils literal"><span class="pre">str</span></tt> Group name to clear. Clear this widget&#8217;s group if None.</div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-sgc.widgets.scale">
+<span id="scale-module"></span><h3><tt class="xref py py-mod docutils literal"><span class="pre">scale</span></tt> Module<a class="headerlink" href="#module-sgc.widgets.scale" title="Permalink to this headline">¶</a></h3>
+<p>Scale widget, allows the user to select a value along a scale using a slider.</p>
+<img alt="Scale" class="align-right" src="_images/scale.png" />
+<dl class="class">
+<dt id="sgc.widgets.scale.Scale">
+<em class="property">class </em><tt class="descname">Scale</tt><big>(</big><em>surf=None</em>, <em>flags=None</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#sgc.widgets.scale.Scale" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#sgc.widgets.base_widget.Simple" title="sgc.widgets.base_widget.Simple"><tt class="xref py py-class docutils literal"><span class="pre">sgc.widgets.base_widget.Simple</span></tt></a></p>
+<p>A scale slider.</p>
+<dl class="docutils">
+<dt>Attributes:</dt>
+<dd><div class="first last line-block">
+<div class="line">value: Set and retrieve the value the slider is currently set to.</div>
+</div>
+</dd>
+<dt>Images:</dt>
+<dd><div class="first last line-block">
+<div class="line">&#8216;image&#8217;: The default button state.</div>
+<div class="line">&#8216;handle&#8217;: The slider handle.</div>
+<div class="line">&#8216;handle_drag&#8217;: The slider handle when the mouse is held down.</div>
+</div>
+</dd>
+</dl>
+<dl class="method">
+<dt id="sgc.widgets.scale.Scale.config">
+<tt class="descname">config</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#sgc.widgets.scale.Scale.config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update widget configuration and redraw the widget.</p>
+<dl class="docutils">
+<dt>Keyword Args:</dt>
+<dd><div class="first last line-block">
+<div class="line">pos: <tt class="docutils literal"><span class="pre">tuple</span></tt> (x,y) Position to set widget to.</div>
+<div class="line">label: <tt class="docutils literal"><span class="pre">str</span></tt> Text to display next to widget.</div>
+<div class="line">label_side: <tt class="docutils literal"><span class="pre">str</span></tt> <cite>(&#8220;top&#8221;, &#8220;right&#8221;, &#8220;bottom&#8221;, &#8220;left&#8221;)</cite></div>
+<div class="line-block">
+<div class="line">Which side of the widget to display the label.</div>
+</div>
+<div class="line">col: <tt class="docutils literal"><span class="pre">tuple</span></tt> (r,g,b) The colour of the fill bar.</div>
+<div class="line">inverted: <tt class="docutils literal"><span class="pre">bool</span></tt> True if scale should go from right to left.</div>
+<div class="line">show_value: Number of decimal digits to display, or False to</div>
+<div class="line-block">
+<div class="line">display nothing.</div>
+</div>
+<div class="line">min: Value at low end of scale.</div>
+<div class="line">max: Value at high end of scale.</div>
+<div class="line">min_step: Minimum step, value will be a multiple of this.</div>
+<div class="line">small_step: Step to increment by when using arrow keys.</div>
+<div class="line">max_step: Step to increment by when holding Ctrl.</div>
+<div class="line">label_col: Colour of value label.</div>
+<div class="line">label_font: Font for value label.</div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-sgc.widgets.settings">
+<span id="settings-module"></span><h3><tt class="xref py py-mod docutils literal"><span class="pre">settings</span></tt> Module<a class="headerlink" href="#module-sgc.widgets.settings" title="Permalink to this headline">¶</a></h3>
+<p>Settings for games, these include:</p>
+<blockquote>
+<div><div class="line-block">
+<div class="line">* CONTROLS</div>
+<div class="line"><br /></div>
+<div class="line-block">
+<div class="line">* Keymap</div>
+<div class="line">* Mouse Sensitivity (speed) TODO</div>
+<div class="line"><br /></div>
+</div>
+<div class="line">* DISPLAY</div>
+<div class="line"><br /></div>
+<div class="line-block">
+<div class="line">* Resolution (width, height) TODO</div>
+<div class="line">* Fullscreen (bool) TODO</div>
+</div>
+</div>
+</div></blockquote>
+<dl class="class">
+<dt id="sgc.widgets.settings.Keys">
+<em class="property">class </em><tt class="descname">Keys</tt><big>(</big><em>keymap_file</em>, <em>parent=None</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#sgc.widgets.settings.Keys" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#sgc.widgets.base_widget.Simple" title="sgc.widgets.base_widget.Simple"><tt class="xref py py-class docutils literal"><span class="pre">sgc.widgets.base_widget.Simple</span></tt></a></p>
+<dl class="method">
+<dt id="sgc.widgets.settings.Keys.add">
+<tt class="descname">add</tt><big>(</big><big>)</big><a class="headerlink" href="#sgc.widgets.settings.Keys.add" title="Permalink to this definition">¶</a></dt>
+<dd><p>Display the settings for the keymap to the player.</p>
+<blockquote>
+<div><div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div></blockquote>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-sgc.widgets.switch">
+<span id="switch-module"></span><h3><tt class="xref py py-mod docutils literal"><span class="pre">switch</span></tt> Module<a class="headerlink" href="#module-sgc.widgets.switch" title="Permalink to this headline">¶</a></h3>
+<p>Switch widget, allows the user to change a boolean setting.</p>
+<img alt="Switch" class="align-right" src="_images/switch.png" />
+<dl class="class">
+<dt id="sgc.widgets.switch.Switch">
+<em class="property">class </em><tt class="descname">Switch</tt><big>(</big><em>surf=None</em>, <em>flags=None</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#sgc.widgets.switch.Switch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#sgc.widgets.base_widget.Simple" title="sgc.widgets.base_widget.Simple"><tt class="xref py py-class docutils literal"><span class="pre">sgc.widgets.base_widget.Simple</span></tt></a></p>
+<p>A switch widget, allowing the user to select between two states.</p>
+<dl class="docutils">
+<dt>Attributes:</dt>
+<dd><div class="first last line-block">
+<div class="line">state: True if switched on.</div>
+</div>
+</dd>
+<dt>Images:</dt>
+<dd><div class="first last line-block">
+<div class="line">&#8216;image&#8217;: The background when the widget is set to off.</div>
+<div class="line">&#8216;active&#8217;: The background when the widget is set to on.</div>
+<div class="line">&#8216;handle&#8217;: The image used for the slider.</div>
+</div>
+</dd>
+</dl>
+<dl class="method">
+<dt id="sgc.widgets.switch.Switch.config">
+<tt class="descname">config</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#sgc.widgets.switch.Switch.config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update widget configuration and redraw the widget.</p>
+<dl class="docutils">
+<dt>Keyword Args:</dt>
+<dd><div class="first last line-block">
+<div class="line">pos: <tt class="docutils literal"><span class="pre">tuple</span></tt> (x,y) Position to set widget to.</div>
+<div class="line">label: <tt class="docutils literal"><span class="pre">str</span></tt> Text to display next to widget.</div>
+<div class="line">label_side: <tt class="docutils literal"><span class="pre">str</span></tt> <cite>(&#8220;top&#8221;, &#8220;right&#8221;, &#8220;bottom&#8221;, &#8220;left&#8221;)</cite></div>
+<div class="line-block">
+<div class="line">Which side of the widget to display the label.</div>
+</div>
+<div class="line">state: <tt class="docutils literal"><span class="pre">bool</span></tt> Sets the state of the widget (False by default).</div>
+<div class="line">on_col: <tt class="docutils literal"><span class="pre">tuple</span></tt> (r,g,b) The background colour when the widget is</div>
+<div class="line-block">
+<div class="line">set to the &#8216;on&#8217; state.</div>
+</div>
+<div class="line">off_col: <tt class="docutils literal"><span class="pre">tuple</span></tt> (r,g,b) The background colour when the widget is</div>
+<div class="line-block">
+<div class="line">set to the &#8216;off&#8217; state.</div>
+</div>
+<div class="line">on_label_col: <tt class="docutils literal"><span class="pre">tuple</span></tt> (r,g,b) The on/off text colour when the</div>
+<div class="line-block">
+<div class="line">widget is set to the &#8216;on&#8217; state.</div>
+</div>
+<div class="line">off_label_col: <tt class="docutils literal"><span class="pre">tuple</span></tt> (r,g,b) The on/off text colour when the</div>
+<div class="line-block">
+<div class="line">widget is set to the &#8216;off&#8217; state.</div>
+</div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="sgc.widgets.switch.Switch.on_click">
+<tt class="descname">on_click</tt><big>(</big><big>)</big><a class="headerlink" href="#sgc.widgets.switch.Switch.on_click" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called when the switch widget is clicked by mouse or keyboard.</p>
+<p>Emits an event with attribute &#8216;gui_type&#8217; == &#8220;click&#8221; and
+&#8216;on&#8217; == (True or False) depending on whether the switch is set to
+the on position or not.</p>
+<p>Override this function to use as a callback handler.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="container-widgets">
+<h2>Container Widgets<a class="headerlink" href="#container-widgets" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-sgc.widgets.container">
+<span id="container-module"></span><h3><tt class="xref py py-mod docutils literal"><span class="pre">container</span></tt> Module<a class="headerlink" href="#module-sgc.widgets.container" title="Permalink to this headline">¶</a></h3>
+<p>Container widget, can be inherited to implement more complex behaviour.</p>
+<dl class="class">
+<dt id="sgc.widgets.container.Container">
+<em class="property">class </em><tt class="descname">Container</tt><big>(</big><em>surf=None</em>, <em>flags=None</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#sgc.widgets.container.Container" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#sgc.widgets.base_widget.Simple" title="sgc.widgets.base_widget.Simple"><tt class="xref py py-class docutils literal"><span class="pre">sgc.widgets.base_widget.Simple</span></tt></a></p>
+<p>Container widget. Handles focus and events of a group
+of widgets packed into a single container.</p>
+<p>If <tt class="docutils literal"><span class="pre">surf</span></tt> is not given, container will be the right size to fit all
+widgets.</p>
+<dl class="method">
+<dt id="sgc.widgets.container.Container.config">
+<tt class="descname">config</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#sgc.widgets.container.Container.config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update widget configuration and redraw the widget.</p>
+<dl class="docutils">
+<dt>Keyword Args:</dt>
+<dd><div class="first last line-block">
+<div class="line">pos: <tt class="docutils literal"><span class="pre">tuple</span></tt> (x,y) Position to set widget to.</div>
+<div class="line">label: <tt class="docutils literal"><span class="pre">str</span></tt> Text to display next to widget.</div>
+<div class="line">label_side: <tt class="docutils literal"><span class="pre">str</span></tt> <cite>(&#8220;top&#8221;, &#8220;right&#8221;, &#8220;bottom&#8221;, &#8220;left&#8221;)</cite></div>
+<div class="line-block">
+<div class="line">Which side of the widget to display the label.</div>
+</div>
+<div class="line">widgets: <tt class="docutils literal"><span class="pre">list</span></tt> Contains widgets to be added at creation time.</div>
+<div class="line-block">
+<div class="line">The order of widgets in the list denotes order they receive</div>
+<div class="line">focus when user hits <tt class="kbd docutils literal"><span class="pre">TAB</span></tt>.</div>
+</div>
+<div class="line">border: <tt class="docutils literal"><span class="pre">int</span></tt> Number of pixels to space around edges when <tt class="docutils literal"><span class="pre">surf</span></tt></div>
+<div class="line-block">
+<div class="line">is not given.</div>
+</div>
+<div class="line">col: <tt class="docutils literal"><span class="pre">tuple</span></tt> (r,g,b) Colour for background, 0 is transparent.</div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-sgc.widgets.boxes">
+<span id="boxes-module"></span><h3><tt class="xref py py-mod docutils literal"><span class="pre">boxes</span></tt> Module<a class="headerlink" href="#module-sgc.widgets.boxes" title="Permalink to this headline">¶</a></h3>
+<p>Boxes are container widgets with automatic positioning/padding of widgets.</p>
+<dl class="class">
+<dt id="sgc.widgets.boxes.VBox">
+<em class="property">class </em><tt class="descname">VBox</tt><big>(</big><em>surf=None</em>, <em>flags=None</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#sgc.widgets.boxes.VBox" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#sgc.widgets.container.Container" title="sgc.widgets.container.Container"><tt class="xref py py-class docutils literal"><span class="pre">sgc.widgets.container.Container</span></tt></a></p>
+<p>VBox is a container widget which sorts widgets into a vertical
+structure.</p>
+<p>If <tt class="docutils literal"><span class="pre">surf</span></tt> is not given, container will be the right size to fit all
+widgets.</p>
+<dl class="method">
+<dt id="sgc.widgets.boxes.VBox.config">
+<tt class="descname">config</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#sgc.widgets.boxes.VBox.config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update widget configuration and redraw the widget.</p>
+<dl class="docutils">
+<dt>Keyword Args:</dt>
+<dd><div class="first last line-block">
+<div class="line">pos: <tt class="docutils literal"><span class="pre">tuple</span></tt> (x,y) Position to set widget to.</div>
+<div class="line">label: <tt class="docutils literal"><span class="pre">str</span></tt> Text to display next to widget.</div>
+<div class="line">label_side: <tt class="docutils literal"><span class="pre">str</span></tt> <cite>(&#8220;top&#8221;, &#8220;right&#8221;, &#8220;bottom&#8221;, &#8220;left&#8221;)</cite></div>
+<div class="line-block">
+<div class="line">Which side of the widget to display the label.</div>
+</div>
+<div class="line">widgets: <tt class="docutils literal"><span class="pre">list</span></tt> Contains widgets to pack into box.</div>
+<div class="line-block">
+<div class="line">The order of widgets in the list denotes order they are packed.</div>
+</div>
+<div class="line">border: <tt class="docutils literal"><span class="pre">int</span></tt> Number of pixels to space around edges when <tt class="docutils literal"><span class="pre">surf</span></tt></div>
+<div class="line-block">
+<div class="line">is not given.</div>
+</div>
+<div class="line">col: <tt class="docutils literal"><span class="pre">tuple</span></tt> (r,g,b) Colour for background, 0 is transparent.</div>
+<div class="line">spacing: <tt class="docutils literal"><span class="pre">int</span></tt> Number of pixels to space between widgets.</div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="sgc.widgets.boxes.HBox">
+<em class="property">class </em><tt class="descname">HBox</tt><big>(</big><em>surf=None</em>, <em>flags=None</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#sgc.widgets.boxes.HBox" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#sgc.widgets.container.Container" title="sgc.widgets.container.Container"><tt class="xref py py-class docutils literal"><span class="pre">sgc.widgets.container.Container</span></tt></a></p>
+<p>HBox is a container widget which sorts widgets into a horizontal
+structure.</p>
+<p>If <tt class="docutils literal"><span class="pre">surf</span></tt> is not given, container will be the right size to fit all
+widgets.</p>
+<dl class="method">
+<dt id="sgc.widgets.boxes.HBox.config">
+<tt class="descname">config</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#sgc.widgets.boxes.HBox.config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update widget configuration and redraw the widget.</p>
+<dl class="docutils">
+<dt>Keyword Args:</dt>
+<dd><div class="first last line-block">
+<div class="line">pos: <tt class="docutils literal"><span class="pre">tuple</span></tt> (x,y) Position to set widget to.</div>
+<div class="line">label: <tt class="docutils literal"><span class="pre">str</span></tt> Text to display next to widget.</div>
+<div class="line">label_side: <tt class="docutils literal"><span class="pre">str</span></tt> <cite>(&#8220;top&#8221;, &#8220;right&#8221;, &#8220;bottom&#8221;, &#8220;left&#8221;)</cite></div>
+<div class="line-block">
+<div class="line">Which side of the widget to display the label.</div>
+</div>
+<div class="line">widgets: <tt class="docutils literal"><span class="pre">list</span></tt> Contains widgets to pack into box.</div>
+<div class="line-block">
+<div class="line">The order of widgets in the list denotes order they are packed.</div>
+</div>
+<div class="line">border: <tt class="docutils literal"><span class="pre">int</span></tt> Number of pixels to space around edges when <tt class="docutils literal"><span class="pre">surf</span></tt></div>
+<div class="line-block">
+<div class="line">is not given.</div>
+</div>
+<div class="line">col: <tt class="docutils literal"><span class="pre">tuple</span></tt> (r,g,b) Colour for background, 0 is transparent.</div>
+<div class="line">spacing: <tt class="docutils literal"><span class="pre">int</span></tt> Number of pixels to space between widgets.</div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-sgc.widgets.dialog">
+<span id="dialog-module"></span><h3><tt class="xref py py-mod docutils literal"><span class="pre">dialog</span></tt> Module<a class="headerlink" href="#module-sgc.widgets.dialog" title="Permalink to this headline">¶</a></h3>
+<p>Dialog window, creates a popup window.</p>
+<img alt="Dialog" class="align-right" src="_images/dialog.png" />
+<dl class="class">
+<dt id="sgc.widgets.dialog.Dialog">
+<em class="property">class </em><tt class="descname">Dialog</tt><big>(</big><em>surf=None</em>, <em>flags=None</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#sgc.widgets.dialog.Dialog" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#sgc.widgets.base_widget.Simple" title="sgc.widgets.base_widget.Simple"><tt class="xref py py-class docutils literal"><span class="pre">sgc.widgets.base_widget.Simple</span></tt></a></p>
+<p>Dialog Window</p>
+<p>If <tt class="docutils literal"><span class="pre">surf</span></tt> is not given, window will be large enough to fit the
+given widget.</p>
+<dl class="docutils">
+<dt>Images:</dt>
+<dd><div class="first last line-block">
+<div class="line">&#8216;close_off&#8217;: The close button in the normal state.</div>
+<div class="line">&#8216;close_over&#8217;: The close button when the cursor is hovering over.</div>
+</div>
+</dd>
+</dl>
+<dl class="method">
+<dt id="sgc.widgets.dialog.Dialog.config">
+<tt class="descname">config</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#sgc.widgets.dialog.Dialog.config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update widget configuration and redraw the widget.</p>
+<dl class="docutils">
+<dt>Keyword Args:</dt>
+<dd><div class="first last line-block">
+<div class="line">pos: <tt class="docutils literal"><span class="pre">tuple</span></tt> (x,y) Position to set widget to.</div>
+<div class="line">label: <tt class="docutils literal"><span class="pre">str</span></tt> Text to display next to widget.</div>
+<div class="line">label_side: <tt class="docutils literal"><span class="pre">str</span></tt> <cite>(&#8220;top&#8221;, &#8220;right&#8221;, &#8220;bottom&#8221;, &#8220;left&#8221;)</cite></div>
+<div class="line-block">
+<div class="line">Which side of the widget to display the label.</div>
+</div>
+<div class="line">widget: Widget that should be displayed in the dialog window.</div>
+<div class="line">title: <tt class="docutils literal"><span class="pre">str</span></tt> Text to display in the title bar.</div>
+<div class="line">col_border: <tt class="docutils literal"><span class="pre">tuple</span></tt> (r,g,b) Window decoration colour.</div>
+<div class="line">col_bg: <tt class="docutils literal"><span class="pre">tuple</span></tt> (r,g,b) Background colour.</div>
+<div class="line">modal: <tt class="docutils literal"><span class="pre">bool</span></tt> <tt class="docutils literal"><span class="pre">True</span></tt> if window should be modal.</div>
+<div class="line-block">
+<div class="line">Defaults to <tt class="docutils literal"><span class="pre">True</span></tt>.</div>
+</div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="sgc.widgets.dialog.Dialog.on_close">
+<tt class="descname">on_close</tt><big>(</big><big>)</big><a class="headerlink" href="#sgc.widgets.dialog.Dialog.on_close" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called when the dialog window is closed.</p>
+<p>Emits an event with attribute &#8216;gui_type&#8217; == &#8220;close&#8221;.</p>
+<p>Override this function to use as a callback handler.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-sgc.widgets.scroll_box">
+<span id="scroll-box-module"></span><h3><tt class="xref py py-mod docutils literal"><span class="pre">scroll_box</span></tt> Module<a class="headerlink" href="#module-sgc.widgets.scroll_box" title="Permalink to this headline">¶</a></h3>
+<p>Scroll box. A container widget that provides scroll bars to be able to
+view a larger widget.</p>
+<img alt="Scroll Box" class="align-right" src="_images/scroll_box.png" />
+<dl class="class">
+<dt id="sgc.widgets.scroll_box.ScrollBox">
+<em class="property">class </em><tt class="descname">ScrollBox</tt><big>(</big><em>surf=None</em>, <em>flags=None</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#sgc.widgets.scroll_box.ScrollBox" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#sgc.widgets.base_widget.Simple" title="sgc.widgets.base_widget.Simple"><tt class="xref py py-class docutils literal"><span class="pre">sgc.widgets.base_widget.Simple</span></tt></a></p>
+<p>Scroll Box</p>
+<dl class="method">
+<dt id="sgc.widgets.scroll_box.ScrollBox.config">
+<tt class="descname">config</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#sgc.widgets.scroll_box.ScrollBox.config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update widget configuration and redraw the widget.</p>
+<dl class="docutils">
+<dt>Keyword Args:</dt>
+<dd><div class="first last line-block">
+<div class="line">pos: <tt class="docutils literal"><span class="pre">tuple</span></tt> (x,y) Position to set widget to.</div>
+<div class="line">label: <tt class="docutils literal"><span class="pre">str</span></tt> Text to display next to widget.</div>
+<div class="line">label_side: <tt class="docutils literal"><span class="pre">str</span></tt> <cite>(&#8220;top&#8221;, &#8220;right&#8221;, &#8220;bottom&#8221;, &#8220;left&#8221;)</cite></div>
+<div class="line-block">
+<div class="line">Which side of the widget to display the label.</div>
+</div>
+<div class="line">widget: Widget that should be displayed in scroll box.</div>
+<div class="line">col: <tt class="docutils literal"><span class="pre">tuple</span></tt> (r,g,b) Colour used for scroll bars and handles.</div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="sgc.widgets.scroll_box.ScrollBox.scroll">
+<tt class="descname">scroll</tt><big>(</big><em>x=None</em>, <em>y=None</em><big>)</big><a class="headerlink" href="#sgc.widgets.scroll_box.ScrollBox.scroll" title="Permalink to this definition">¶</a></dt>
+<dd><p>Scroll by x and y coordinates.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="composite-widgets">
+<h2>Composite Widgets<a class="headerlink" href="#composite-widgets" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-sgc.widgets.composite.dialogs">
+<span id="dialogs-module"></span><h3><tt class="xref py py-mod docutils literal"><span class="pre">dialogs</span></tt> Module<a class="headerlink" href="#module-sgc.widgets.composite.dialogs" title="Permalink to this headline">¶</a></h3>
+<p>Common dialog widgets.</p>
+<img alt="Save/Quit Dialog" class="align-right" src="_images/dialog_save_quit.png" />
+<dl class="class">
+<dt id="sgc.widgets.composite.dialogs.DialogSaveQuit">
+<em class="property">class </em><tt class="descname">DialogSaveQuit</tt><big>(</big><em>surf=None</em>, <em>flags=None</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#sgc.widgets.composite.dialogs.DialogSaveQuit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#sgc.widgets.dialog.Dialog" title="sgc.widgets.dialog.Dialog"><tt class="xref py py-class docutils literal"><span class="pre">sgc.widgets.dialog.Dialog</span></tt></a></p>
+<p>This dialog should be called when a user attempts to quit without saving.
+The dialog will remove itself if the user has cancelled the action.</p>
+<dl class="method">
+<dt id="sgc.widgets.composite.dialogs.DialogSaveQuit.config">
+<tt class="descname">config</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#sgc.widgets.composite.dialogs.DialogSaveQuit.config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update widget configuration and redraw the widget.</p>
+<dl class="docutils">
+<dt>Keyword Args:</dt>
+<dd><div class="first last line-block">
+<div class="line">pos: <tt class="docutils literal"><span class="pre">tuple</span></tt> (x,y) Position to set widget to.</div>
+<div class="line">label: <tt class="docutils literal"><span class="pre">str</span></tt> Text to display next to widget.</div>
+<div class="line">label_side: <tt class="docutils literal"><span class="pre">str</span></tt> <cite>(&#8220;top&#8221;, &#8220;right&#8221;, &#8220;bottom&#8221;, &#8220;left&#8221;)</cite></div>
+<div class="line-block">
+<div class="line">Which side of the widget to display the label.</div>
+</div>
+<div class="line">doc: <tt class="docutils literal"><span class="pre">str</span></tt> The file name of the current document.</div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="sgc.widgets.composite.dialogs.DialogSaveQuit.on_quit">
+<tt class="descname">on_quit</tt><big>(</big><big>)</big><a class="headerlink" href="#sgc.widgets.composite.dialogs.DialogSaveQuit.on_quit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called when the user clicks &#8216;close without saving&#8217;.</p>
+<p>Emits an event with attribute &#8216;gui_type&#8217; == &#8220;quit&#8221;.</p>
+<p>Override this function to use as a callback handler.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sgc.widgets.composite.dialogs.DialogSaveQuit.on_save">
+<tt class="descname">on_save</tt><big>(</big><big>)</big><a class="headerlink" href="#sgc.widgets.composite.dialogs.DialogSaveQuit.on_save" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called when the user clicks the save button.</p>
+<p>Emits an event with attribute &#8216;gui_type&#8217; == &#8220;save&#8221;.</p>
+<p>Override this function to use as a callback handler.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sgc.widgets.composite.dialogs.DialogSaveQuit.on_close">
+<tt class="descname">on_close</tt><big>(</big><big>)</big><a class="headerlink" href="#sgc.widgets.composite.dialogs.DialogSaveQuit.on_close" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called when the user cancels the action.</p>
+<p>Emits an event with attribute &#8216;gui_type&#8217; == &#8220;cancel&#8221;.</p>
+<p>Override this function to use as a callback handler.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">widgets Package</a><ul>
+<li><a class="reference internal" href="#core-widgets">Core Widgets</a><ul>
+<li><a class="reference internal" href="#module-sgc.widgets.base_widget"><tt class="docutils literal"><span class="pre">base_widget</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-sgc.widgets.button"><tt class="docutils literal"><span class="pre">button</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-sgc.widgets.combo"><tt class="docutils literal"><span class="pre">combo</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-sgc.widgets.fps_counter"><tt class="docutils literal"><span class="pre">fps_counter</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-sgc.widgets.input_box"><tt class="docutils literal"><span class="pre">input_box</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-sgc.widgets.label"><tt class="docutils literal"><span class="pre">label</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-sgc.widgets.menu"><tt class="docutils literal"><span class="pre">menu</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-sgc.widgets.radio_button"><tt class="docutils literal"><span class="pre">radio_button</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-sgc.widgets.scale"><tt class="docutils literal"><span class="pre">scale</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-sgc.widgets.settings"><tt class="docutils literal"><span class="pre">settings</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-sgc.widgets.switch"><tt class="docutils literal"><span class="pre">switch</span></tt> Module</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#container-widgets">Container Widgets</a><ul>
+<li><a class="reference internal" href="#module-sgc.widgets.container"><tt class="docutils literal"><span class="pre">container</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-sgc.widgets.boxes"><tt class="docutils literal"><span class="pre">boxes</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-sgc.widgets.dialog"><tt class="docutils literal"><span class="pre">dialog</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-sgc.widgets.scroll_box"><tt class="docutils literal"><span class="pre">scroll_box</span></tt> Module</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#composite-widgets">Composite Widgets</a><ul>
+<li><a class="reference internal" href="#module-sgc.widgets.composite.dialogs"><tt class="docutils literal"><span class="pre">dialogs</span></tt> Module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="sgc.html"
+                        title="previous chapter">sgc Package</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="dev.html"
+                        title="next chapter">Widget Developers</a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="dev.html" title="Widget Developers"
+             >next</a></li>
+        <li class="right" >
+          <a href="sgc.html" title="sgc Package"
+             >previous</a> |</li>
+        <li><a href="index.html">SGC 0.2.1 documentation</a> &raquo;</li>
+          <li><a href="sgc.html" >sgc Package</a> &raquo;</li> 
+      </ul>
+    </div>
+    
+    <div class="footer">
+        &copy; Copyright 2012, Sam Bull.
+    </div>
+    <!-- Start of StatCounter Code for Default Guide -->
+    <script type="text/javascript">
+    var sc_project=7769961; 
+    var sc_invisible=1; 
+    var sc_security="3bce5671"; 
+    </script>
+    <script type="text/javascript"
+    src="http://www.statcounter.com/counter/counter_xhtml.js"></script>
+    <noscript><div class="statcounter"><a title="vBulletin
+    statistic" href="http://statcounter.com/vbulletin/"
+    class="statcounter"><img class="statcounter"
+    src="http://c.statcounter.com/7769961/0/3bce5671/1/"
+    alt="vBulletin statistic" /></a></div></noscript>
+    <!-- End of StatCounter Code for Default Guide -->
+
+  </body>
+</html>

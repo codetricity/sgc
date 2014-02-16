@@ -1,0 +1,208 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Events &mdash; SGC 0.2.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within SGC 0.2.1 documentation"
+          href="_static/opensearch.xml"/>
+    <link rel="top" title="SGC 0.2.1 documentation" href="index.html" />
+    <link rel="up" title="Tutorial" href="tutorial.html" />
+    <link rel="next" title="Theming" href="tutorial.theming.html" />
+    <link rel="prev" title="Getting Started" href="tutorial.get_started.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="tutorial.theming.html" title="Theming"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="tutorial.get_started.html" title="Getting Started"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">SGC 0.2.1 documentation</a> &raquo;</li>
+          <li><a href="tutorial.html" accesskey="U">Tutorial</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="events">
+<h1>Events<a class="headerlink" href="#events" title="Permalink to this headline">¶</a></h1>
+<p>This tutorial will show you how to utilise events.</p>
+<p>All event methods are recognised by the naming convention of having <em>on_</em>
+prepended to their names. You will find these methods documented within each
+widget, for example the Button widget has an
+<a class="reference internal" href="sgc.widgets.html#sgc.widgets.button.Button.on_click" title="sgc.widgets.button.Button.on_click"><tt class="xref py py-meth docutils literal"><span class="pre">on_click()</span></tt></a> method; this is run
+whenever the button is clicked via mouse or keyboard.</p>
+<div class="section" id="id1">
+<h2>Events<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>The event methods, if left unchanged, will emit a Pygame event. All events use
+the <a class="reference internal" href="sgc.html#module-sgc.locals" title="sgc.locals"><tt class="xref py py-mod docutils literal"><span class="pre">GUI</span></tt></a> constant for their type attribute.</p>
+<p>Try adding this code to the event loop of your program or the getting started
+code to see all the events being emitted by the toolkit:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">GUI</span><span class="p">:</span>
+    <span class="k">print</span> <span class="n">event</span>
+</pre></div>
+</div>
+<p>All of these events also have these extra attributes:</p>
+<dl class="attribute">
+<dt id="widget_type">
+<tt class="descname">widget_type</tt><a class="headerlink" href="#widget_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>The class of the widget that emitted the event.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="widget">
+<tt class="descname">widget</tt><a class="headerlink" href="#widget" title="Permalink to this definition">¶</a></dt>
+<dd><p>The instance of the widget that emitted the event.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gui_type">
+<tt class="descname">gui_type</tt><a class="headerlink" href="#gui_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>A string indicating what this event represents.</p>
+</dd></dl>
+
+<p>Some events will have additional attributes and are documented with their
+event methods.</p>
+</div>
+<div class="section" id="callbacks">
+<h2>Callbacks<a class="headerlink" href="#callbacks" title="Permalink to this headline">¶</a></h2>
+<p>If you prefer to use callbacks rather than handling events, this can be
+easily accomplished by overloading the method.</p>
+<p>You could do this using a subclass:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">MyButton</span><span class="p">(</span><span class="n">sgc</span><span class="o">.</span><span class="n">Button</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">on_click</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">print</span> <span class="s">&quot;Overloading through inheritance.&quot;</span>
+</pre></div>
+</div>
+<p>Or, you could simply reassign a function:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">foo</span><span class="p">():</span>
+    <span class="k">print</span> <span class="s">&quot;Replace through assignment.&quot;</span>
+
+<span class="n">my_button</span><span class="o">.</span><span class="n">on_click</span> <span class="o">=</span> <span class="n">foo</span>
+</pre></div>
+</div>
+<p>Or, you can pass the function into
+<a class="reference internal" href="sgc.widgets.html#sgc.widgets.base_widget.Simple.config" title="sgc.widgets.base_widget.Simple.config"><tt class="xref py py-meth docutils literal"><span class="pre">config()</span></tt></a> to assign it:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">foo</span><span class="p">():</span>
+    <span class="k">print</span> <span class="s">&quot;Assign through config.&quot;</span>
+
+<span class="n">my_button</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">on_click</span><span class="o">=</span><span class="n">foo</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="using-both-events-and-callbacks">
+<h2>Using both events and callbacks<a class="headerlink" href="#using-both-events-and-callbacks" title="Permalink to this headline">¶</a></h2>
+<p>Because using a callback will suppress the event, if you want to use both
+callbacks and events for a widget you must call the original method in
+your callback.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">MyButton</span><span class="p">(</span><span class="n">sgc</span><span class="o">.</span><span class="n">Button</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">on_click</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">sgc</span><span class="o">.</span><span class="n">Button</span><span class="o">.</span><span class="n">on_click</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="k">print</span> <span class="s">&quot;Using a callback and sending an event.&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Events</a><ul>
+<li><a class="reference internal" href="#id1">Events</a></li>
+<li><a class="reference internal" href="#callbacks">Callbacks</a></li>
+<li><a class="reference internal" href="#using-both-events-and-callbacks">Using both events and callbacks</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="tutorial.get_started.html"
+                        title="previous chapter">Getting Started</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="tutorial.theming.html"
+                        title="next chapter">Theming</a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="tutorial.theming.html" title="Theming"
+             >next</a></li>
+        <li class="right" >
+          <a href="tutorial.get_started.html" title="Getting Started"
+             >previous</a> |</li>
+        <li><a href="index.html">SGC 0.2.1 documentation</a> &raquo;</li>
+          <li><a href="tutorial.html" >Tutorial</a> &raquo;</li> 
+      </ul>
+    </div>
+    
+    <div class="footer">
+        &copy; Copyright 2012, Sam Bull.
+    </div>
+    <!-- Start of StatCounter Code for Default Guide -->
+    <script type="text/javascript">
+    var sc_project=7769961; 
+    var sc_invisible=1; 
+    var sc_security="3bce5671"; 
+    </script>
+    <script type="text/javascript"
+    src="http://www.statcounter.com/counter/counter_xhtml.js"></script>
+    <noscript><div class="statcounter"><a title="vBulletin
+    statistic" href="http://statcounter.com/vbulletin/"
+    class="statcounter"><img class="statcounter"
+    src="http://c.statcounter.com/7769961/0/3bce5671/1/"
+    alt="vBulletin statistic" /></a></div></noscript>
+    <!-- End of StatCounter Code for Default Guide -->
+
+  </body>
+</html>

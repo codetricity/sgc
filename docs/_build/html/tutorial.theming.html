@@ -1,0 +1,199 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Theming &mdash; SGC 0.2.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within SGC 0.2.1 documentation"
+          href="_static/opensearch.xml"/>
+    <link rel="top" title="SGC 0.2.1 documentation" href="index.html" />
+    <link rel="up" title="Tutorial" href="tutorial.html" />
+    <link rel="next" title="sgc Package" href="sgc.html" />
+    <link rel="prev" title="Events" href="tutorial.events.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="sgc.html" title="sgc Package"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="tutorial.events.html" title="Events"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">SGC 0.2.1 documentation</a> &raquo;</li>
+          <li><a href="tutorial.html" accesskey="U">Tutorial</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="theming">
+<h1>Theming<a class="headerlink" href="#theming" title="Permalink to this headline">¶</a></h1>
+<p>This tutorial will show you how to theme the toolkit to better suit your game.</p>
+<p>In the <a class="reference internal" href="sgc.widgets.html#module-sgc.widgets.base_widget" title="sgc.widgets.base_widget"><tt class="xref py py-mod docutils literal"><span class="pre">Simple</span></tt></a> widget&#8217;s documentation, it
+shows that the first argument of a widget can be used to change what&#8217;s drawn.</p>
+<p>Earlier, we created a button using this code:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">btn</span> <span class="o">=</span> <span class="n">sgc</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s">&quot;Clicky&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>This ignores the first argument and thus creates a default button.</p>
+<div class="section" id="custom-sizes">
+<h2>Custom sizes<a class="headerlink" href="#custom-sizes" title="Permalink to this headline">¶</a></h2>
+<p>We can change the size of the widget by specifying the size as the first
+argument to the widget. This argument should be a tuple or list containing
+the width and height:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">btn</span> <span class="o">=</span> <span class="n">sgc</span><span class="o">.</span><span class="n">Button</span><span class="p">((</span><span class="mi">20</span><span class="p">,</span> <span class="mi">70</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s">&quot;Clicky&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>This creates the button with a width of 20 pixels and height of 70 pixels.</p>
+</div>
+<div class="section" id="custom-images">
+<h2>Custom images<a class="headerlink" href="#custom-images" title="Permalink to this headline">¶</a></h2>
+<p>There are 2 ways to use custom images to make a widget fit into the design
+of a game.</p>
+<div class="section" id="pygame-surface">
+<h3>Pygame surface<a class="headerlink" href="#pygame-surface" title="Permalink to this headline">¶</a></h3>
+<p>The first method is to pass an existing Pygame Surface object as the first
+argument. This could be loaded using the pygame.image module, a surface
+you&#8217;ve drawn on with code or anything else resulting in a Pygame Surface:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">surf</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">Surface</span><span class="p">((</span><span class="mi">200</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
+<span class="o">...</span> <span class="n">draw</span> <span class="n">some</span> <span class="n">stuff</span> <span class="n">on</span> <span class="n">surf</span> <span class="o">...</span>
+<span class="n">btn</span> <span class="o">=</span> <span class="n">sgc</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">surf</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&quot;Clicky&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="load-image-from-file">
+<h3>Load image from file<a class="headerlink" href="#load-image-from-file" title="Permalink to this headline">¶</a></h3>
+<p>The second method is to pass a string containing the file name of an image
+that can be loaded:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">btn</span> <span class="o">=</span> <span class="n">sgc</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="s">&quot;btn.png&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&quot;Clicky&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This will load the image using pygame.image.load(surf).convert_alpha().
+If you want to load the image differently, then load it manually and
+pass the resulting surface in as shown in the previous sub-section.</p>
+</div>
+</div>
+</div>
+<div class="section" id="using-multiple-images">
+<h2>Using multiple images<a class="headerlink" href="#using-multiple-images" title="Permalink to this headline">¶</a></h2>
+<p>If you look at the documentation for some widgets, such as the
+<a class="reference internal" href="sgc.widgets.html#sgc.widgets.button.Button" title="sgc.widgets.button.Button"><tt class="xref py py-class docutils literal"><span class="pre">Button</span></tt></a> widget, you will find some
+list multiple images which can be used for different states. The Button
+lists 3 images: &#8216;image&#8217;, &#8216;over&#8217; and &#8216;down&#8217;. These represent different states
+of the button and each can use a different image.</p>
+<p>In order to use images for these different states, we must pass in a dictionary;
+the keys should be strings matching the image states, while the values should
+be either a string or Pygame Surface in the same manner as the previous section:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">imgs</span> <span class="o">=</span> <span class="p">{</span><span class="s">&quot;image&quot;</span><span class="p">:</span> <span class="s">&quot;off.png&quot;</span><span class="p">,</span> <span class="s">&quot;over&quot;</span><span class="p">:</span> <span class="s">&quot;over.png&quot;</span><span class="p">,</span> <span class="s">&quot;down&quot;</span><span class="p">:</span> <span class="s">&quot;down.png&quot;</span><span class="p">}</span>
+<span class="n">btn</span> <span class="o">=</span> <span class="n">sgc</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">imgs</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&quot;Clicky&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Theming</a><ul>
+<li><a class="reference internal" href="#custom-sizes">Custom sizes</a></li>
+<li><a class="reference internal" href="#custom-images">Custom images</a><ul>
+<li><a class="reference internal" href="#pygame-surface">Pygame surface</a></li>
+<li><a class="reference internal" href="#load-image-from-file">Load image from file</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#using-multiple-images">Using multiple images</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="tutorial.events.html"
+                        title="previous chapter">Events</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="sgc.html"
+                        title="next chapter">sgc Package</a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="sgc.html" title="sgc Package"
+             >next</a></li>
+        <li class="right" >
+          <a href="tutorial.events.html" title="Events"
+             >previous</a> |</li>
+        <li><a href="index.html">SGC 0.2.1 documentation</a> &raquo;</li>
+          <li><a href="tutorial.html" >Tutorial</a> &raquo;</li> 
+      </ul>
+    </div>
+    
+    <div class="footer">
+        &copy; Copyright 2012, Sam Bull.
+    </div>
+    <!-- Start of StatCounter Code for Default Guide -->
+    <script type="text/javascript">
+    var sc_project=7769961; 
+    var sc_invisible=1; 
+    var sc_security="3bce5671"; 
+    </script>
+    <script type="text/javascript"
+    src="http://www.statcounter.com/counter/counter_xhtml.js"></script>
+    <noscript><div class="statcounter"><a title="vBulletin
+    statistic" href="http://statcounter.com/vbulletin/"
+    class="statcounter"><img class="statcounter"
+    src="http://c.statcounter.com/7769961/0/3bce5671/1/"
+    alt="vBulletin statistic" /></a></div></noscript>
+    <!-- End of StatCounter Code for Default Guide -->
+
+  </body>
+</html>

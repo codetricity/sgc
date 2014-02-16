@@ -1,0 +1,302 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>sgc Package &mdash; SGC 0.2.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within SGC 0.2.1 documentation"
+          href="_static/opensearch.xml"/>
+    <link rel="top" title="SGC 0.2.1 documentation" href="index.html" />
+    <link rel="next" title="widgets Package" href="sgc.widgets.html" />
+    <link rel="prev" title="Theming" href="tutorial.theming.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="sgc.widgets.html" title="widgets Package"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="tutorial.theming.html" title="Theming"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">SGC 0.2.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-sgc">
+<span id="sgc-package"></span><h1>sgc Package<a class="headerlink" href="#module-sgc" title="Permalink to this headline">¶</a></h1>
+<p>All widgets are imported into sgc namespace. This means you can access
+widgets in sgc namespace, such as <tt class="docutils literal"><span class="pre">sgc.Button</span></tt>.</p>
+<dl class="docutils">
+<dt>Module Packages:</dt>
+<dd><div class="first last line-block">
+<div class="line"><a class="reference internal" href="sgc.widgets.html#module-sgc.widgets" title="sgc.widgets"><tt class="xref py py-mod docutils literal"><span class="pre">widgets</span></tt></a>: All the widgets available for use in this toolkit.</div>
+</div>
+</dd>
+<dt>Modules:</dt>
+<dd><div class="first last line-block">
+<div class="line"><a class="reference internal" href="#module-sgc.locals" title="sgc.locals"><tt class="xref py py-mod docutils literal"><span class="pre">locals</span></tt></a>: Constants to be imported into the local namespace for convenience.</div>
+<div class="line"><a class="reference internal" href="#module-sgc.surface" title="sgc.surface"><tt class="xref py py-mod docutils literal"><span class="pre">surface</span></tt></a>: Extended pygame.surface classes.</div>
+</div>
+</dd>
+</dl>
+<dl class="class">
+<dt id="sgc.Font">
+<em class="property">class </em><tt class="descname">Font</tt><a class="headerlink" href="#sgc.Font" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class containing fonts available for use.</p>
+<p>Index class to get fonts, such as <tt class="docutils literal"><span class="pre">Font[&quot;widget&quot;]</span></tt> for the widget font.</p>
+<dl class="docutils">
+<dt>The default fonts are:</dt>
+<dd><div class="first last line-block">
+<div class="line">widget: The default font for widgets.</div>
+<div class="line">title: A larger title font.</div>
+<div class="line">mono: A monospaced font.</div>
+</div>
+</dd>
+<dt>Attributes:</dt>
+<dd><div class="first last line-block">
+<div class="line">col: (r,g,b) tuple, containing the default font colour.</div>
+</div>
+</dd>
+</dl>
+<dl class="attribute">
+<dt id="sgc.Font.col">
+<tt class="descname">col</tt><em class="property"> = (255, 255, 255)</em><a class="headerlink" href="#sgc.Font.col" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="classmethod">
+<dt id="sgc.Font.set_fonts">
+<em class="property">classmethod </em><tt class="descname">set_fonts</tt><big>(</big><em>fonts={}</em><big>)</big><a class="headerlink" href="#sgc.Font.set_fonts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set fonts to a specific font. If a font exists, it will be replaced,
+otherwise it will be newly created.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><div class="first last line-block">
+<div class="line">fonts: Dictionary containing fonts to use.</div>
+<div class="line-block">
+<div class="line">Key should be name of font. Value should be string</div>
+<div class="line">naming either custom FreeType or a system font.</div>
+</div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="sgc.update">
+<tt class="descname">update</tt><big>(</big><em>time</em><big>)</big><a class="headerlink" href="#sgc.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates all active widgets or modal widgets each frame.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="sgc.event">
+<tt class="descname">event</tt><big>(</big><em>event</em><big>)</big><a class="headerlink" href="#sgc.event" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send event to focused widget and handle widget focus.</p>
+</dd></dl>
+
+<div class="section" id="module-sgc.locals">
+<span id="locals-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">locals</span></tt> Module<a class="headerlink" href="#module-sgc.locals" title="Permalink to this headline">¶</a></h2>
+<p>Imports useful objects into the local namespace.</p>
+<dl class="docutils">
+<dt>Constants:</dt>
+<dd><div class="first last line-block">
+<div class="line">GUI: Event type for any event emitted by this toolkit.</div>
+</div>
+</dd>
+</dl>
+<dl class="class">
+<dt id="sgc.locals.EventSlot">
+<em class="property">class </em><tt class="descname">EventSlot</tt><big>(</big><em>widget</em>, <em>event</em>, <em>funcs=()</em><big>)</big><a class="headerlink" href="#sgc.locals.EventSlot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>Event slots object. Allows dynamic allocation of events.
+Args:</p>
+<blockquote>
+<div><div class="line-block">
+<div class="line">widget: The widget you want to bind this event slot to.</div>
+<div class="line">event: <tt class="docutils literal"><span class="pre">str</span></tt> The attribute you want to bind to (e.g. &#8216;on_click&#8217;).</div>
+<div class="line">funcs: A sequence of functions you want to include by default.</div>
+</div>
+</div></blockquote>
+<dl class="method">
+<dt id="sgc.locals.EventSlot.add">
+<tt class="descname">add</tt><big>(</big><em>func</em><big>)</big><a class="headerlink" href="#sgc.locals.EventSlot.add" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add additional functions to be called.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><div class="first last line-block">
+<div class="line">func: A function or sequence of functions to be added.</div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="sgc.locals.EventSlot.remove">
+<tt class="descname">remove</tt><big>(</big><em>func</em><big>)</big><a class="headerlink" href="#sgc.locals.EventSlot.remove" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove functions from the existing set of functions.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><div class="first last line-block">
+<div class="line">func: A function or sequence of functions to be removed.</div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-sgc.surface">
+<span id="surface-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">surface</span></tt> Module<a class="headerlink" href="#module-sgc.surface" title="Permalink to this headline">¶</a></h2>
+<p>Screen class to store rect information with the screen and setup the toolkit.</p>
+<dl class="class">
+<dt id="sgc.surface.Screen">
+<em class="property">class </em><tt class="descname">Screen</tt><big>(</big><em>size</em>, <em>flags=0</em>, <em>depth=0</em><big>)</big><a class="headerlink" href="#sgc.surface.Screen" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>Class for the screen.</p>
+<p>This must be used instead of <tt class="docutils literal"><span class="pre">pygame.display.set_mode()</span></tt>.</p>
+<dl class="docutils">
+<dt>Attributes:</dt>
+<dd><div class="first last line-block">
+<div class="line">image: The pygame.display screen.</div>
+<div class="line">rect: <tt class="docutils literal"><span class="pre">pygame.Rect</span></tt> containing screen size.</div>
+</div>
+</dd>
+<dt>Args:</dt>
+<dd><div class="first last line-block">
+<div class="line">size, flags, depth: Arguments for pygame.display.set_mode()</div>
+</div>
+</dd>
+</dl>
+<dl class="attribute">
+<dt id="sgc.surface.Screen.rect">
+<tt class="descname">rect</tt><a class="headerlink" href="#sgc.surface.Screen.rect" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="sgc.surface.Screen.image">
+<tt class="descname">image</tt><a class="headerlink" href="#sgc.surface.Screen.image" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sgc.widgets.html">widgets Package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sgc.widgets.html#core-widgets">Core Widgets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sgc.widgets.html#container-widgets">Container Widgets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sgc.widgets.html#composite-widgets">Composite Widgets</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">sgc Package</a><ul>
+<li><a class="reference internal" href="#module-sgc.locals"><tt class="docutils literal"><span class="pre">locals</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-sgc.surface"><tt class="docutils literal"><span class="pre">surface</span></tt> Module</a></li>
+<li><a class="reference internal" href="#subpackages">Subpackages</a><ul>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="tutorial.theming.html"
+                        title="previous chapter">Theming</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="sgc.widgets.html"
+                        title="next chapter">widgets Package</a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="sgc.widgets.html" title="widgets Package"
+             >next</a></li>
+        <li class="right" >
+          <a href="tutorial.theming.html" title="Theming"
+             >previous</a> |</li>
+        <li><a href="index.html">SGC 0.2.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    
+    <div class="footer">
+        &copy; Copyright 2012, Sam Bull.
+    </div>
+    <!-- Start of StatCounter Code for Default Guide -->
+    <script type="text/javascript">
+    var sc_project=7769961; 
+    var sc_invisible=1; 
+    var sc_security="3bce5671"; 
+    </script>
+    <script type="text/javascript"
+    src="http://www.statcounter.com/counter/counter_xhtml.js"></script>
+    <noscript><div class="statcounter"><a title="vBulletin
+    statistic" href="http://statcounter.com/vbulletin/"
+    class="statcounter"><img class="statcounter"
+    src="http://c.statcounter.com/7769961/0/3bce5671/1/"
+    alt="vBulletin statistic" /></a></div></noscript>
+    <!-- End of StatCounter Code for Default Guide -->
+
+  </body>
+</html>

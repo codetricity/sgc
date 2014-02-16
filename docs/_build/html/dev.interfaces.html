@@ -1,0 +1,260 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Interfaces &mdash; SGC 0.2.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within SGC 0.2.1 documentation"
+          href="_static/opensearch.xml"/>
+    <link rel="top" title="SGC 0.2.1 documentation" href="index.html" />
+    <link rel="up" title="Widget Developers" href="dev.html" />
+    <link rel="next" title="Menu Format" href="dev.menu.html" />
+    <link rel="prev" title="Developer documentation" href="dev.base_widget.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="dev.menu.html" title="Menu Format"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="dev.base_widget.html" title="Developer documentation"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">SGC 0.2.1 documentation</a> &raquo;</li>
+          <li><a href="dev.html" accesskey="U">Widget Developers</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-sgc.widgets._interface">
+<span id="interfaces"></span><h1>Interfaces<a class="headerlink" href="#module-sgc.widgets._interface" title="Permalink to this headline">¶</a></h1>
+<p>Interface classes that can be used to implement particular intefaces.
+Should use multiple inheritance to inherit from the base widget and any
+needed interface classes.</p>
+<div class="section" id="module-sgc.widgets._interface.text">
+<span id="text"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">text</span></tt><a class="headerlink" href="#module-sgc.widgets._interface.text" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="sgc.widgets._interface.text.SelectableText">
+<em class="property">class </em><tt class="descname">SelectableText</tt><a class="headerlink" href="#sgc.widgets._interface.text.SelectableText" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="sgc.widgets._interface.text.SelectableText._text">
+<tt class="descname">_text</tt><em class="property"> = ''</em><a class="headerlink" href="#sgc.widgets._interface.text.SelectableText._text" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current text. For normal selectable text, this should be a
+string. For editable text, this should be a list containing each
+different character as a separate item.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="sgc.widgets._interface.text.SelectableText._text_offset">
+<tt class="descname">_text_offset</tt><em class="property"> = 0</em><a class="headerlink" href="#sgc.widgets._interface.text.SelectableText._text_offset" title="Permalink to this definition">¶</a></dt>
+<dd><p>The offset in pixels from the left side of the widget&#8217;s rect to the
+left edge of the text.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="sgc.widgets._interface.text.SelectableText._text_pos">
+<tt class="descname">_text_pos</tt><em class="property"> = 0</em><a class="headerlink" href="#sgc.widgets._interface.text.SelectableText._text_pos" title="Permalink to this definition">¶</a></dt>
+<dd><p>Should always be initially set to _text_offset. Used internally.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="sgc.widgets._interface.text.SelectableText._blink">
+<tt class="descname">_blink</tt><a class="headerlink" href="#sgc.widgets._interface.text.SelectableText._blink" title="Permalink to this definition">¶</a></dt>
+<dd><p>Always return False when a selection is made.</p>
+<p>True if the cursor should be drawn this frame.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="sgc.widgets._interface.text.SelectableText._select">
+<tt class="descname">_select</tt><em class="property"> = None</em><a class="headerlink" href="#sgc.widgets._interface.text.SelectableText._select" title="Permalink to this definition">¶</a></dt>
+<dd><p>Index of starting position for current selection. None if no
+current selection. Combined with <cite>_cursor_pos</cite> defines the
+selection. Use <cite>_select_fix()</cite> if you need the current selection
+area.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="sgc.widgets._interface.text.SelectableText._chars">
+<tt class="descname">_chars</tt><em class="property"> = ((0, 0),)</em><a class="headerlink" href="#sgc.widgets._interface.text.SelectableText._chars" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tuple containing (pos, width) tuples representing the position
+and size of each character when rendered. Automatically generated
+by <cite>_calc_chars()</cite>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt>
+<tt class="descname">_blink</tt></dt>
+<dd><p>Always return False when a selection is made.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sgc.widgets._interface.text.SelectableText._select_fix">
+<tt class="descname">_select_fix</tt><big>(</big><big>)</big><a class="headerlink" href="#sgc.widgets._interface.text.SelectableText._select_fix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the selection area corrected, so if the selection is
+right-to-left it returns the positions reversed.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sgc.widgets._interface.text.SelectableText._calc_chars">
+<tt class="descname">_calc_chars</tt><big>(</big><big>)</big><a class="headerlink" href="#sgc.widgets._interface.text.SelectableText._calc_chars" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the position and size of each character.
+Stores the results in self._chars as a tuple of (pos, width) tuples.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sgc.widgets._interface.text.SelectableText._mouse_cursor">
+<tt class="descname">_mouse_cursor</tt><big>(</big><em>mouse_pos</em><big>)</big><a class="headerlink" href="#sgc.widgets._interface.text.SelectableText._mouse_cursor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the text cursor position of the mouse.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sgc.widgets._interface.text.SelectableText._update_select_text">
+<tt class="descname">_update_select_text</tt><big>(</big><em>time</em><big>)</big><a class="headerlink" href="#sgc.widgets._interface.text.SelectableText._update_select_text" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update text stuff for selectable text.</p>
+<p>Should be called from widget&#8217;s update() method.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sgc.widgets._interface.text.SelectableText._event_select_text">
+<tt class="descname">_event_select_text</tt><big>(</big><em>event</em><big>)</big><a class="headerlink" href="#sgc.widgets._interface.text.SelectableText._event_select_text" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handles events for selectable text.</p>
+<p>Call from widget&#8217;s _event() method.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sgc.widgets._interface.text.SelectableText._update_modify_text">
+<tt class="descname">_update_modify_text</tt><big>(</big><em>time</em><big>)</big><a class="headerlink" href="#sgc.widgets._interface.text.SelectableText._update_modify_text" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update text stuff for editable text (e.g. input box).</p>
+<p>Should be called from widget&#8217;s update() method.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sgc.widgets._interface.text.SelectableText._event_modify_text">
+<tt class="descname">_event_modify_text</tt><big>(</big><em>event</em><big>)</big><a class="headerlink" href="#sgc.widgets._interface.text.SelectableText._event_modify_text" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handles events for editable text (e.g. input box).</p>
+<p>Should be called from widget&#8217;s _event() method.
+Will typically be used alongside <cite>_event_select_text()</cite>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sgc.widgets._interface.text.SelectableText._delete_selection">
+<tt class="descname">_delete_selection</tt><big>(</big><big>)</big><a class="headerlink" href="#sgc.widgets._interface.text.SelectableText._delete_selection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete the current selection of text.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sgc.widgets._interface.text.SelectableText._draw_selection">
+<tt class="descname">_draw_selection</tt><big>(</big><em>image</em>, <em>y</em>, <em>height</em><big>)</big><a class="headerlink" href="#sgc.widgets._interface.text.SelectableText._draw_selection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Draw selection onto image. Does nothing if no selection.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="sgc.widgets._interface.text.SelectableText._cursor_pos">
+<tt class="descname">_cursor_pos</tt><a class="headerlink" href="#sgc.widgets._interface.text.SelectableText._cursor_pos" title="Permalink to this definition">¶</a></dt>
+<dd><p>The cursor position in characters. Will ensure cursor is always in
+valid location when set.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Interfaces</a><ul>
+<li><a class="reference internal" href="#module-sgc.widgets._interface.text"><tt class="docutils literal"><span class="pre">text</span></tt></a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="dev.base_widget.html"
+                        title="previous chapter">Developer documentation</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="dev.menu.html"
+                        title="next chapter">Menu Format</a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="dev.menu.html" title="Menu Format"
+             >next</a></li>
+        <li class="right" >
+          <a href="dev.base_widget.html" title="Developer documentation"
+             >previous</a> |</li>
+        <li><a href="index.html">SGC 0.2.1 documentation</a> &raquo;</li>
+          <li><a href="dev.html" >Widget Developers</a> &raquo;</li> 
+      </ul>
+    </div>
+    
+    <div class="footer">
+        &copy; Copyright 2012, Sam Bull.
+    </div>
+    <!-- Start of StatCounter Code for Default Guide -->
+    <script type="text/javascript">
+    var sc_project=7769961; 
+    var sc_invisible=1; 
+    var sc_security="3bce5671"; 
+    </script>
+    <script type="text/javascript"
+    src="http://www.statcounter.com/counter/counter_xhtml.js"></script>
+    <noscript><div class="statcounter"><a title="vBulletin
+    statistic" href="http://statcounter.com/vbulletin/"
+    class="statcounter"><img class="statcounter"
+    src="http://c.statcounter.com/7769961/0/3bce5671/1/"
+    alt="vBulletin statistic" /></a></div></noscript>
+    <!-- End of StatCounter Code for Default Guide -->
+
+  </body>
+</html>

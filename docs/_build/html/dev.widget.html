@@ -1,0 +1,464 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Creating new widgets &mdash; SGC 0.2.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within SGC 0.2.1 documentation"
+          href="_static/opensearch.xml"/>
+    <link rel="top" title="SGC 0.2.1 documentation" href="index.html" />
+    <link rel="up" title="Widget Developers" href="dev.html" />
+    <link rel="next" title="Developer documentation" href="dev.base_widget.html" />
+    <link rel="prev" title="Widget Developers" href="dev.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="dev.base_widget.html" title="Developer documentation"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="dev.html" title="Widget Developers"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">SGC 0.2.1 documentation</a> &raquo;</li>
+          <li><a href="dev.html" accesskey="U">Widget Developers</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="creating-new-widgets">
+<h1>Creating new widgets<a class="headerlink" href="#creating-new-widgets" title="Permalink to this headline">¶</a></h1>
+<p>This page will show you what is required to create a new custom widget.</p>
+<div class="section" id="a-first-widget">
+<h2>A first widget<a class="headerlink" href="#a-first-widget" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="a-basic-widget">
+<h3>A basic widget<a class="headerlink" href="#a-basic-widget" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">pygame</span>
+<span class="kn">from</span> <span class="nn">pygame.locals</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="kn">from</span> <span class="nn">sgc.widgets._locals</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">sgc.widgets.base_widget</span> <span class="kn">import</span> <span class="n">Simple</span>
+
+<span class="k">class</span> <span class="nc">MyBasicWidget</span><span class="p">(</span><span class="n">Simple</span><span class="p">):</span>
+    <span class="n">_default_size</span> <span class="o">=</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+<p>This widget is available in the example/custom_widget.py file.</p>
+<p>The top lines here import some common things that will be needed in most
+widgets.</p>
+<p>Line 7 defines our new widget as <cite>MyBasicWidget</cite> and inherits
+from <a class="reference internal" href="sgc.widgets.html#sgc.widgets.base_widget.Simple" title="sgc.widgets.base_widget.Simple"><tt class="xref py py-class docutils literal"><span class="pre">Simple</span></tt></a>. This is the base
+widget that all widgets must inherit from.</p>
+<p>Line 8 sets the default size of the widget when the user doesn&#8217;t specify a size.</p>
+<div class="section" id="using-the-widget">
+<h4>Using the widget<a class="headerlink" href="#using-the-widget" title="Permalink to this headline">¶</a></h4>
+<p>This is our first widget complete. You can now use this widget in a program
+using the typical code:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">custom_widget</span> <span class="kn">import</span> <span class="n">MyBasicWidget</span>
+<span class="n">widget</span> <span class="o">=</span> <span class="n">MyBasicWidget</span><span class="p">()</span>
+<span class="n">widget</span><span class="o">.</span><span class="n">add</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>If you use this code in your program, you should see a black square
+representing the widget, as we haven&#8217;t told it to draw anything more
+interesting. It also has no interactivity and will simply sit there doing
+nothing.</p>
+<p>One thing you can see, is that a lot of the basic widget behaviour is
+inherited. So, we can add and remove it like any other widget and it will fade
+in and out. We can also use a custom size, change it&#8217;s position and add a
+label to this basic widget. All this functionality comes free from the base
+widget.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">widget</span> <span class="o">=</span> <span class="n">MyBasicWidget</span><span class="p">((</span><span class="mi">200</span><span class="p">,</span><span class="mi">100</span><span class="p">),</span> <span class="n">pos</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">200</span><span class="p">),</span>
+                       <span class="n">label</span><span class="o">=</span><span class="s">&quot;Free label&quot;</span><span class="p">,</span> <span class="n">label_side</span><span class="o">=</span><span class="s">&quot;top&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="expanding-on-the-widget">
+<h2>Expanding on the widget<a class="headerlink" href="#expanding-on-the-widget" title="Permalink to this headline">¶</a></h2>
+<p>We are now going to create a new widget called <cite>MyWidget</cite> with more features.
+This widget is located in the same file as <cite>MyBasicWidget</cite>.</p>
+<div class="section" id="settings">
+<h3>Settings<a class="headerlink" href="#settings" title="Permalink to this headline">¶</a></h3>
+<p>There is a convenience dictionary for storing configuration settings for each
+widget.</p>
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre>    <span class="n">_settings_default</span> <span class="o">=</span> <span class="p">{</span><span class="s">&quot;label&quot;</span><span class="p">:</span> <span class="s">&quot;Text&quot;</span><span class="p">,</span> <span class="s">&quot;label_col&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="mi">255</span><span class="p">)}</span>
+</pre></div>
+</td></tr></table></div>
+<p>We can put all the default setting values into <cite>_settings_default</cite> dictionary.
+When the widget is instantiated this dictionary will be copied to <cite>_settings</cite>.
+You can then use this dictionary to access and change the settings as we will
+do later.</p>
+</div>
+<div class="section" id="drawing">
+<h3>Drawing<a class="headerlink" href="#drawing" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="regular-images">
+<span id="available-images"></span><h4>Regular images<a class="headerlink" href="#regular-images" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre>    <span class="n">_available_images</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;over&quot;</span><span class="p">,)</span>
+</pre></div>
+</td></tr></table></div>
+<p>This class attribute lists all the different image states your widget will have.
+It should be a tuple listing all the alternative states your widget should
+draw. The default state is &#8220;image&#8221; and should not be listed. For example, a
+button would have it&#8217;s default off state, a state when the cursor hovers over
+and another state when the user is clicking down on the button; so we would
+use the tuple <cite>(&#8220;over&#8221;, &#8220;down&#8221;)</cite> to give us those 3 images to work with.</p>
+<p>These images will all be created at the widget&#8217;s size.</p>
+<p>Our widget will have an over state when the user hovers the mouse over it.</p>
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre>    <span class="k">def</span> <span class="nf">_draw_base</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">img</span><span class="p">,</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_available_images</span><span class="p">,</span>
+                            <span class="p">(</span><span class="n">Color</span><span class="p">(</span><span class="s">&quot;red&quot;</span><span class="p">),</span> <span class="n">Color</span><span class="p">(</span><span class="s">&quot;green&quot;</span><span class="p">))):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_images</span><span class="p">[</span><span class="n">img</span><span class="p">]</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">Color</span><span class="p">(</span><span class="s">&quot;black&quot;</span><span class="p">))</span>
+            <span class="n">pygame</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_images</span><span class="p">[</span><span class="n">img</span><span class="p">],</span> <span class="n">col</span><span class="p">,</span>
+                               <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rect</span><span class="o">.</span><span class="n">w</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">rect</span><span class="o">.</span><span class="n">h</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">rect</span><span class="o">.</span><span class="n">w</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+<p>The <cite>_draw_base()</cite> function will draw our base images. Here we use a loop
+through <cite>self._available_images</cite> which will have been modified to include
+&#8220;image&#8221;. All our images are stored in <cite>self._images</cite> and indexed using their
+name. In this function, we have made our base images to be black with a red
+or green circle.</p>
+<p>This function will only be called when the user doesn&#8217;t pass in a custom image.
+If the user passes in a custom image, the widget will use that image instead.</p>
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre>    <span class="k">def</span> <span class="nf">_draw_final</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">Font</span><span class="p">[</span><span class="s">&quot;widget&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_settings</span><span class="p">[</span><span class="s">&quot;label&quot;</span><span class="p">],</span> <span class="bp">True</span><span class="p">,</span>
+                                     <span class="bp">self</span><span class="o">.</span><span class="n">_settings</span><span class="p">[</span><span class="s">&quot;label_col&quot;</span><span class="p">])</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rect</span><span class="o">.</span><span class="n">w</span><span class="o">/</span><span class="mi">2</span> <span class="o">-</span> <span class="n">text</span><span class="o">.</span><span class="n">get_width</span><span class="p">()</span><span class="o">/</span><span class="mi">2</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rect</span><span class="o">.</span><span class="n">h</span><span class="o">/</span><span class="mi">2</span> <span class="o">-</span> <span class="n">text</span><span class="o">.</span><span class="n">get_height</span><span class="p">()</span><span class="o">/</span><span class="mi">2</span>
+        <span class="k">for</span> <span class="n">img</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_available_images</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_images</span><span class="p">[</span><span class="n">img</span><span class="p">]</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">))</span>
+</pre></div>
+</td></tr></table></div>
+<p>The <cite>_draw_final()</cite> function works just like the previous <cite>_draw_base()</cite>
+function. The only difference is that this function will be called at the end
+of the drawing sequence, regardless of whether a custom image was passed in or
+not. This should be used to draw something that should always appear, such as
+the label on the <cite>Button</cite> widget.</p>
+<p>In our function here, we are going to draw the text from our settings
+dictionary onto the middle of the widget using the default &#8220;widget&#8221; font.</p>
+</div>
+<div class="section" id="extra-images">
+<span id="id1"></span><h4>Extra images<a class="headerlink" href="#extra-images" title="Permalink to this headline">¶</a></h4>
+<p>Sometimes you want other images with your widget that are not the full size of
+your widget.</p>
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre>    <span class="n">_extra_images</span> <span class="o">=</span> <span class="p">{</span><span class="s">&quot;thing&quot;</span><span class="p">:</span> <span class="p">((</span><span class="mf">0.3</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">))}</span>
+</pre></div>
+</td></tr></table></div>
+<p>The attribute <cite>_extra_images</cite> defines a dictionary containing these extra
+images. The value for each image should be a tuple representing x and y size.
+The x and y sizes should each be another tuple containing two numbers; the
+first number is the ratio of the image to the widget size, while the second is
+the number of pixels to offset from that size.</p>
+<p>It is also possible to use an empty tuple as one of the sizes, in which case
+the size will be copied from the other, allowing square images.</p>
+<p>Our widget here, will have one extra image which is 30% of the widget&#8217;s width
+and 4 pixels shorter that the full height of the widget.</p>
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre>    <span class="k">def</span> <span class="nf">_draw_thing</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image</span><span class="p">,</span> <span class="n">size</span><span class="p">):</span>
+        <span class="n">image</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">Color</span><span class="p">(</span><span class="s">&quot;darkolivegreen4&quot;</span><span class="p">))</span>
+</pre></div>
+</td></tr></table></div>
+<p>For each extra image we have specified, we must supply an _draw_[<cite>name</cite>]()
+method. This works much like the other draw functions, except that we only draw
+on the one surface, and this surface is passed in as a 2nd argument,
+along with the size of the image.</p>
+<p>In this method we have filled our extra image with a random color.</p>
+</div>
+</div>
+<div class="section" id="update">
+<h3>Update<a class="headerlink" href="#update" title="Permalink to this headline">¶</a></h3>
+<p>In order to give our widget some more dynamic behaviour, we can use the update
+method.</p>
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_images</span><span class="p">[</span><span class="s">&quot;thing&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">rect</span><span class="o">.</span><span class="n">centerx</span> <span class="o">=</span> <span class="p">(</span><span class="n">pygame</span><span class="o">.</span><span class="n">mouse</span><span class="o">.</span><span class="n">get_pos</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span>
+                                              <span class="bp">self</span><span class="o">.</span><span class="n">rect_abs</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+<p>When the widget is on-screen, this method will be called every frame. It is
+given the time passed since the last frame in milliseconds.</p>
+<p>In this method we make the extra image of our widget move along the x axis to
+align with our mouse.</p>
+</div>
+<div class="section" id="creating-events">
+<h3>Creating Events<a class="headerlink" href="#creating-events" title="Permalink to this headline">¶</a></h3>
+<p>We can utilise events in our widget by defining an <cite>on_[name]()</cite> method. The
+method must be prefixed with &#8220;on_&#8221; to ensure the event can be set through the
+config() method automatically and to ensure the <a class="reference internal" href="sgc.html#sgc.locals.EventSlot" title="sgc.locals.EventSlot"><tt class="xref py py-class docutils literal"><span class="pre">sgc.locals.EventSlot</span></tt></a>
+object will work.</p>
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre>    <span class="k">def</span> <span class="nf">on_click</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">pygame</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_create_event</span><span class="p">(</span><span class="s">&quot;click&quot;</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_on</span><span class="p">))</span>
+</pre></div>
+</td></tr></table></div>
+<p>Our method should simply post an event. The event is created from the
+<tt class="xref py py-meth docutils literal"><span class="pre">_create_event()</span></tt>
+method. The first argument must be the value of &#8220;gui_type&#8221; that should roughly
+describe what will trigger the event. It also accepts optional keyword arguments
+that define extra attributes for the event object.</p>
+<p>This method defines an <cite>on_click()</cite> method for our widget. It will emit a
+&#8220;click&#8221; event and give the on/off state as an extra attribute.</p>
+</div>
+<div class="section" id="handling-events">
+<h3>Handling Events<a class="headerlink" href="#handling-events" title="Permalink to this headline">¶</a></h3>
+<p>Another thing we can do to make our widget more dynamic is to respond to events.</p>
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre>    <span class="n">_can_focus</span> <span class="o">=</span> <span class="bp">True</span>
+</pre></div>
+</td></tr></table></div>
+<p>The first thing we need to do, is to change the _can_focus attribute to <cite>True</cite>
+in order to be able to receive any events in our widget.</p>
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight"><pre>    <span class="k">def</span> <span class="nf">_event</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">MOUSEBUTTONDOWN</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">button</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_on</span> <span class="o">=</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">on_click</span><span class="p">()</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_switch</span><span class="p">(</span><span class="s">&quot;over&quot;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on</span> <span class="k">else</span> <span class="s">&quot;image&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_images</span><span class="p">[</span><span class="s">&quot;thing&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">_show</span> <span class="o">=</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_images</span><span class="p">[</span><span class="s">&quot;thing&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">_show</span>
+</pre></div>
+</td></tr></table></div>
+<p>The <cite>_event()</cite> method receives any events when the widget is focused.</p>
+<p>This method switches between image states when the player left-clicks our
+widget, and shows/hides the extra image when clicking with another button.</p>
+</div>
+<div class="section" id="configuration-options">
+<h3>Configuration Options<a class="headerlink" href="#configuration-options" title="Permalink to this headline">¶</a></h3>
+<p>Another thing we may want to do, is provide some extra configuration options
+to the user of our widget. For this we define an <cite>_config()</cite> method, this will
+automatically be called when the user calls the inherited <cite>config()</cite> method.</p>
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre>    <span class="k">def</span> <span class="nf">_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">if</span> <span class="s">&quot;init&quot;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_images</span><span class="p">[</span><span class="s">&quot;thing&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">rect</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="mi">2</span>
+
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="p">(</span><span class="s">&quot;label&quot;</span><span class="p">,</span> <span class="s">&quot;label_col&quot;</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_settings</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+</pre></div>
+</td></tr></table></div>
+<p>The <cite>_config()</cite> method is passed all the keyword arguments from the user. In
+this method you will need to check for your arguments and handle them
+appropriately. The most common thing to do, is to simply copy the values into
+the settings dictionary; in our widget here, we have created a simple loop
+that does just that. You may however need to do more complex processing of an
+argument or provide validation before saving it into the settings dictionary.</p>
+<p>The &#8220;init&#8221; argument is given when the widget is first instantiated. This
+allows you to run some code that only needs to be run once. This method will
+set the <cite>y</cite> position of the extra image, which won&#8217;t need to be changed later.</p>
+<p>Our example also allows the user to change the text displayed in the middle of
+the widget and the colour of the font used. This replaces the base widget&#8217;s
+behaviour, and we no longer get a label added to the side.</p>
+</div>
+<div class="section" id="dotted-rectangle">
+<h3>Dotted Rectangle<a class="headerlink" href="#dotted-rectangle" title="Permalink to this headline">¶</a></h3>
+<p>When a widget receives keyboard focus, a common thing is for that widget to
+have a dotted rectangle around it. If the <cite>_draw_rect</cite> attribute is set to
+<cite>True</cite>, the widget will automatically draw a dotted rect around it when the
+image state is changed.</p>
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre>    <span class="k">def</span> <span class="nf">_focus_enter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">focus</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">focus</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_draw_rect</span> <span class="o">=</span> <span class="bp">True</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_switch</span><span class="p">()</span>
+</pre></div>
+</td></tr></table></div>
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre>    <span class="k">def</span> <span class="nf">_focus_exit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_draw_rect</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_switch</span><span class="p">()</span>
+</pre></div>
+</td></tr></table></div>
+<p>These methods set the widget to draw the dotted rect when it gains focus via
+the keyboard (by pressing the <cite>TAB</cite> key), and to stop drawing it when focus is
+lost.</p>
+</div>
+<div class="section" id="other-things">
+<h3>Other things<a class="headerlink" href="#other-things" title="Permalink to this headline">¶</a></h3>
+<p>There are other class attributes you may need to use, and other inherited
+methods that may be useful. You can find these documented on the
+<a class="reference internal" href="dev.base_widget.html"><em>Developer documentation</em></a>.</p>
+</div>
+</div>
+<div class="section" id="advanced">
+<h2>Advanced<a class="headerlink" href="#advanced" title="Permalink to this headline">¶</a></h2>
+<p>We will finish up with a couple of more advanced things you may want to
+accomplish when creating complex widgets.</p>
+<div class="section" id="dynamic-sizing">
+<h3>Dynamic Sizing<a class="headerlink" href="#dynamic-sizing" title="Permalink to this headline">¶</a></h3>
+<p>You can create dynamically sized widgets, for example a container
+widget which sets it&#8217;s size to that of it&#8217;s children. To do so, make sure you
+do not change <cite>_default_size</cite>. Then, later in your widget when you know what
+size to make it, you need to call
+<tt class="xref py py-meth docutils literal"><span class="pre">self._create_base_images(size)</span></tt>,
+with size being a <cite>(width, height)</cite> tuple.</p>
+</div>
+<div class="section" id="container-widgets">
+<h3>Container widgets<a class="headerlink" href="#container-widgets" title="Permalink to this headline">¶</a></h3>
+<p>To create a container widget, you should normally start by inheriting from
+<a class="reference internal" href="sgc.widgets.html#sgc.widgets.container.Container" title="sgc.widgets.container.Container"><tt class="xref py py-class docutils literal"><span class="pre">sgc.Container</span></tt></a>; this will sort
+out the basics of handling multiple children widgets. To use the Container&#8217;s
+features you will probably want to call <cite>Container._config()</cite> from your custom
+<cite>_config()</cite> method.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Creating new widgets</a><ul>
+<li><a class="reference internal" href="#a-first-widget">A first widget</a><ul>
+<li><a class="reference internal" href="#a-basic-widget">A basic widget</a><ul>
+<li><a class="reference internal" href="#using-the-widget">Using the widget</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#expanding-on-the-widget">Expanding on the widget</a><ul>
+<li><a class="reference internal" href="#settings">Settings</a></li>
+<li><a class="reference internal" href="#drawing">Drawing</a><ul>
+<li><a class="reference internal" href="#regular-images">Regular images</a></li>
+<li><a class="reference internal" href="#extra-images">Extra images</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#update">Update</a></li>
+<li><a class="reference internal" href="#creating-events">Creating Events</a></li>
+<li><a class="reference internal" href="#handling-events">Handling Events</a></li>
+<li><a class="reference internal" href="#configuration-options">Configuration Options</a></li>
+<li><a class="reference internal" href="#dotted-rectangle">Dotted Rectangle</a></li>
+<li><a class="reference internal" href="#other-things">Other things</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#advanced">Advanced</a><ul>
+<li><a class="reference internal" href="#dynamic-sizing">Dynamic Sizing</a></li>
+<li><a class="reference internal" href="#container-widgets">Container widgets</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="dev.html"
+                        title="previous chapter">Widget Developers</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="dev.base_widget.html"
+                        title="next chapter">Developer documentation</a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="dev.base_widget.html" title="Developer documentation"
+             >next</a></li>
+        <li class="right" >
+          <a href="dev.html" title="Widget Developers"
+             >previous</a> |</li>
+        <li><a href="index.html">SGC 0.2.1 documentation</a> &raquo;</li>
+          <li><a href="dev.html" >Widget Developers</a> &raquo;</li> 
+      </ul>
+    </div>
+    
+    <div class="footer">
+        &copy; Copyright 2012, Sam Bull.
+    </div>
+    <!-- Start of StatCounter Code for Default Guide -->
+    <script type="text/javascript">
+    var sc_project=7769961; 
+    var sc_invisible=1; 
+    var sc_security="3bce5671"; 
+    </script>
+    <script type="text/javascript"
+    src="http://www.statcounter.com/counter/counter_xhtml.js"></script>
+    <noscript><div class="statcounter"><a title="vBulletin
+    statistic" href="http://statcounter.com/vbulletin/"
+    class="statcounter"><img class="statcounter"
+    src="http://c.statcounter.com/7769961/0/3bce5671/1/"
+    alt="vBulletin statistic" /></a></div></noscript>
+    <!-- End of StatCounter Code for Default Guide -->
+
+  </body>
+</html>
