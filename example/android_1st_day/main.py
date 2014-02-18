@@ -1,82 +1,170 @@
-import pygame, sys
-import key2str
+import sgc
+from sgc.locals import *
 
-try:
+import pygame
+from pygame.locals import *
+
+import sys
+
+
+
+class ClickButton(sgc.Button):
+    def on_click(self):
+        self.level = 2
+        print("Starting Game.  Going to level {}".format(self.level))        
+        self.config_set = False
+
+def game_quit():
+    pygame.quit()
+    sys.exit()
+
+def handle_location():
+    location = inputbox.text.encode("utf8")
+    print("The location is {}".format(location))
+    
+
+pygame.init()
+
+try: 
     import android
 except ImportError:
     android = None
 
-pygame.init()
 
 if android:
     android.init()
     android.map_key(android.KEYCODE_BACK, pygame.K_ESCAPE)
 
+BLUE=(20, 40, 150)
+RED=(180, 10, 10)
+bloody_fnt = pygame.font.Font("fnt/bloody.ttf", 24)
+menu_top = 30
+menu_left = 10
 
-BLACK = (0, 0,0)
-GREEN = (0, 200, 0)
-YELLOW = (0, 200, 200)
-GRAY = (120, 120, 120)
-WHITE = (255, 255, 255)
-
-
-screen = pygame.display.set_mode((480, 320))
-
-button = pygame.Rect(10, 10, 100, 50)
-button_fnt = pygame.font.Font("animeace2_reg.ttf", 14)
-button_surf1 = button_fnt.render("Show/Hide", True, BLACK)
-button_surf2 = button_fnt.render(" Keyboard", True, BLACK)
-button_line2 = (10, 28)
-
-text3 = button_fnt.render("Back = close keyboard or exit", True, WHITE)
-text3_line = (120, 36)
-
-inputbox = pygame.Rect (10, 70, 460, 30)
-textsurface = pygame.Surface((460, 30))
-textsurface.fill(GRAY)
+fonts = {"widget": "fnt/FreeSans.ttf", "title": "fnt/FreeSans.ttf", "mono": "fnt/FreeMono.ttf"}
+sgc.Font.set_fonts(fonts)
 
 
-keyboard_up = False
+screen = sgc.surface.Screen((480, 320))
 
-maintext = []
+clock = pygame.time.Clock()
 
-while True:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            pygame.quit()
-            sys.exit()
-        if event.type == pygame.KEYDOWN:
-            maintext = key2str.update(maintext, event)
-            textstring = ''.join(maintext)
-            textsurface = button_fnt.render(textstring, True, WHITE)
-            if event.key == pygame.K_ESCAPE:
-                if keyboard_up:
-                    android.hide_keyboard()
-                    keyboard_up = False
-                else:
-                    pygame.quit()
-                    sys.exit()
-        elif event.type == pygame.MOUSEBUTTONDOWN:
-            touch_pos = pygame.mouse.get_pos()
-            if button.collidepoint(touch_pos):
-                if keyboard_up == False:
-                    keyboard_up = True
-                elif keyboard_up == True:
-                    keyboard_up = False
-            if android:
-                if keyboard_up:
-                    android.show_keyboard()
-                else:
-                    android.hide_keyboard()
 
-    pygame.draw.rect(screen, GREEN, button)
-    screen.blit(button_surf1, button)
-    screen.blit(button_surf2, button_line2)
-    screen.blit(text3, text3_line)
+btn = ClickButton(label="Next", 
+                  pos=(360, 260),
+                  col = (0, 200, 0),
+                  label_col = (0, 0, 0))
 
-    pygame.draw.rect(screen, GRAY, inputbox)
-    screen.blit(textsurface, inputbox)
 
-    
-    pygame.display.update()
+button2 = sgc.Button(col=(180, 20, 0), 
+                     label_col =(0,0,0),  
+                     label = "Quit", 
+                     pos=(10,260))
 
+# cool use of assigning the method "on_click" to a pre-defined function
+button2.on_click = game_quit
+
+
+combo_a = sgc.Combo(pos=(250, menu_top), 
+                    label="Locate Animal", 
+                    label_side="top",
+                    values=("dog", "cat", "mouse", "mongoose"),
+                    selection=1)
+
+
+switch = sgc.Switch(label="Animal Satellite DB (Cost)",
+                    label_side="top",
+                    pos=(300, 200))
+
+
+radio_a = sgc.Radio(label = "Max GPS (affects battery)",
+                    lable_side = "right",
+                    group = "first_group",
+                    active=True)
+radio_b = sgc.Radio(group = "first_group", label = "GPS checked every 5 min")
+radio_c = sgc.Radio(group = "first_group", label = "Disable GPS")
+radio_box = sgc.VBox(widgets=(radio_a, radio_b, radio_c), 
+                     pos = (menu_left, menu_top))
+
+scale = sgc.Scale(pos=(10, 200),
+                  show_value=4,
+                  label="Search Radius (miles)",
+                  label_side="top")
+scale.add(order=5)
+
+label = sgc.Label(pos=(20, 20),
+                  col=RED,
+                  text=("Welcome to the animal capture system\n" +
+                        "for diseased animals with virus ZQ85H.\n" + 
+                        "a lethal zombie virus."),
+                  font=bloody_fnt)
+
+# inputbox not working on pgs4a
+inputbox = sgc.InputBox(pos=(200, 100),
+                        label="Location",
+                        default="Name Location")
+
+input_ok = sgc.Button(pos=(220, 140),
+                      label="Submit")
+input_ok.on_click = handle_location
+
+
+def main():
+
+    btn.add(0)
+    button2.add(1)
+    combo_a.add(2)
+    radio_box.add(3)
+    switch.add(4)
+
+    btn.level = 1
+    level = btn.level
+    btn.config_set = True
+
+    screen_color = (50,50,50)
+
+    while True:
+
+        if android:
+            if android.check_pause():
+                android.wait_for_resume()
+
+        time = clock.tick(30)
+
+        for event in pygame.event.get():
+            sgc.event(event)
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            elif event.type == KEYDOWN and event.key == K_ESCAPE:
+                pygame.quit()
+                sys.exit()
+
+        level = btn.level
+        if level == 2:
+            if btn.config_set == False:
+                screen_color = BLUE
+                btn.remove(fade=False)
+                radio_box.remove(fade=False)
+                combo_a.remove(fade = False)
+                scale.remove(fade=False)
+                switch.remove(fade=False)
+                print("configured 2nd screen settings")
+                label.add()
+# input of text not working with android soft keyboard
+#                inputbox.add()
+#                input_ok.add()
+                btn.config_set = True
+        # if inputbox.has_focus():
+        #     if android:
+        #         android.show_keyboard()
+        # else:
+        #     if android:
+        #         android.hide_keyboard()
+
+        screen.fill(screen_color)
+        sgc.update(time)
+        pygame.display.flip()
+
+if __name__ == "__main__":
+    main()
